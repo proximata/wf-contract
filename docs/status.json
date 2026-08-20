@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-08-20T22:21:17.208Z",
-  "commit": "3110bb7",
+  "generatedAt": "2026-08-20T22:28:25.165Z",
+  "commit": "ba33f58",
   "tests": {
     "pass": 10,
     "fail": 0,
@@ -10,6 +10,11 @@
     "pass": 12,
     "total": 12,
     "exit": 0
+  },
+  "install": {
+    "exit": 0,
+    "idempotent": true,
+    "shellcheck": "pass"
   },
   "eval": {
     "runs": 50,
@@ -22,20 +27,15 @@
     "falsifiersEvaluated": 0
   },
   "chips": {
-    "tests": {
-      "label": "tests",
-      "message": "10 pass",
-      "color": "green"
-    },
-    "schemas": {
-      "label": "shapes",
-      "message": "12/12",
-      "color": "green"
-    },
     "eval": {
       "label": "eval",
-      "message": "50 runs (fixtures)",
+      "message": "50 fixture runs · 0/6 falsifiers",
       "color": "yellow"
+    },
+    "install": {
+      "label": "install",
+      "message": "bootstrap.sh · idempotent",
+      "color": "green"
     }
   }
 }
