@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "verify",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["checks", "verdict"],
+  "properties": {
+    "checks": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "cmd", "pass", "evidence"],
+        "properties": {
+          "name": { "type": "string", "minLength": 1, "maxLength": 120 },
+          "cmd": { "type": "string", "minLength": 1, "maxLength": 200 },
+          "pass": { "type": "boolean" },
+          "evidence": { "type": "string", "minLength": 1, "maxLength": 1200 }
+        }
+      }
+    },
+    "verdict": { "type": "string", "enum": ["pass", "fail", "blocked"] }
+  }
+}

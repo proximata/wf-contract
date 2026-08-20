@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "recon",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["found", "gaps", "confidence"],
+  "properties": {
+    "found": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "claim", "evidence"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1, "maxLength": 80 },
+          "claim": { "type": "string", "minLength": 1, "maxLength": 600 },
+          "evidence": { "type": "string", "minLength": 1, "maxLength": 2000 },
+          "shape": {
+            "type": "string",
+            "enum": ["recon", "spec", "implement", "verify", "review", "synthesis"]
+          }
+        }
+      }
+    },
+    "gaps": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1, "maxLength": 300 }
+    },
+    "confidence": { "type": "string", "enum": ["low", "med", "high"] }
+  }
+}

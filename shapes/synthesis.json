@@ -1,0 +1,22 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["summary", "byInput"],
+  "properties": {
+    "summary": { "type": "string", "maxLength": 1500 },
+    "byInput": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "kept", "dropped", "why"],
+        "properties": {
+          "id": { "type": "string", "maxLength": 80 },
+          "kept": { "type": "boolean" },
+          "dropped": { "type": "boolean" },
+          "why": { "type": "string", "maxLength": 300 }
+        }
+      }
+    }
+  }
+}

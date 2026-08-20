@@ -1,0 +1,21 @@
+#!/bin/sh
+# EXAMPLE overlay — entirely optional. Nothing in wf-contract requires it.
+# To use: cp overlays/exe-dev.sh.example overlays/exe-dev.sh
+# Files matching overlays/*.sh are sourced by bootstrap.sh in sorted order.
+# Files ending .example are never sourced.
+#
+# Rule: overlays ADD, never mutate base behaviour. Do not edit files bootstrap.sh
+# wrote, do not unset its variables, do not `cd` without returning.
+# Use changed()/note()/fail(), inherited from bootstrap.sh.
+#
+# This example carries exe.dev-specific facts and nothing that any other user needs.
+
+[ -n "${EXE_DEV_VM:-}" ] || return 0
+
+# Example: persist a shell history dir that survives VM re-provisioning.
+if [ ! -d "$HOME/.persist/history" ]; then
+  mkdir -p "$HOME/.persist/history"
+  changed "created $HOME/.persist/history"
+else
+  note "$HOME/.persist/history exists"
+fi

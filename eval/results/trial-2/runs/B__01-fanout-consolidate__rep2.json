@@ -1,0 +1,99 @@
+{
+  "synthetic": true,
+  "recordedBy": "eval/fixtures/record.mjs",
+  "scenario": "pass",
+  "scriptSha256": "e3f826b20f342b993ed7f6dd3517d0df8c2d4cc4bad02a0b683b421b96d6e816",
+  "runId": "B-01-fanout-consolidate-rep2",
+  "workflowName": "01-fanout-consolidate [B]",
+  "args": {
+    "arm": "B",
+    "variant": "01-fanout-consolidate",
+    "rep": 2,
+    "seededFault": false,
+    "faultStage": null
+  },
+  "status": "completed",
+  "agents": [
+    {
+      "id": "recon-taint-1",
+      "callId": "c-recon-taint",
+      "label": "recon-taint",
+      "phase": "recon",
+      "prompt": "Survey src/taint",
+      "status": "done",
+      "model": "frozen/fixture",
+      "tokens": 4200,
+      "tokenUsage": {
+        "input": 2940,
+        "output": 1260
+      },
+      "result": "{\"found\":[{\"id\":\"F-taint\",\"claim\":\"taint reads the AST\",\"evidence\":\"corpus probe over 205 scripts\"}],\"gaps\":[],\"confidence\":\"med\"}",
+      "resultPreview": "{\"found\":[{\"id\":\"F-taint\",\"claim\":\"taint reads the AST\",\"evidence\":\"corpus probe over 205 scripts\"}],\"gaps\":[],\"confiden",
+      "startedAt": "2026-01-01T00:00:00.000Z",
+      "endedAt": "2026-01-01T00:01:00.000Z"
+    },
+    {
+      "id": "recon-wrap-1",
+      "callId": "c-recon-wrap",
+      "label": "recon-wrap",
+      "phase": "recon",
+      "prompt": "Survey src/wrap",
+      "status": "done",
+      "model": "frozen/fixture",
+      "tokens": 4200,
+      "tokenUsage": {
+        "input": 2940,
+        "output": 1260
+      },
+      "result": "{\"found\":[{\"id\":\"F-wrap\",\"claim\":\"wrap reads the AST\",\"evidence\":\"corpus probe over 205 scripts\"}],\"gaps\":[],\"confidence\":\"med\"}",
+      "resultPreview": "{\"found\":[{\"id\":\"F-wrap\",\"claim\":\"wrap reads the AST\",\"evidence\":\"corpus probe over 205 scripts\"}],\"gaps\":[],\"confidence",
+      "startedAt": "2026-01-01T00:00:00.000Z",
+      "endedAt": "2026-01-01T00:01:00.000Z"
+    },
+    {
+      "id": "recon-tokens-1",
+      "callId": "c-recon-tokens",
+      "label": "recon-tokens",
+      "phase": "recon",
+      "prompt": "Survey src/tokens",
+      "status": "done",
+      "model": "frozen/fixture",
+      "tokens": 4200,
+      "tokenUsage": {
+        "input": 2940,
+        "output": 1260
+      },
+      "result": "{\"found\":[{\"id\":\"F-tokens\",\"claim\":\"tokens reads the AST\",\"evidence\":\"corpus probe over 205 scripts\"}],\"gaps\":[],\"confidence\":\"med\"}",
+      "resultPreview": "{\"found\":[{\"id\":\"F-tokens\",\"claim\":\"tokens reads the AST\",\"evidence\":\"corpus probe over 205 scripts\"}],\"gaps\":[],\"confid",
+      "startedAt": "2026-01-01T00:00:00.000Z",
+      "endedAt": "2026-01-01T00:01:00.000Z"
+    },
+    {
+      "id": "synthesis-1",
+      "callId": "c-synthesis",
+      "label": "synthesis",
+      "phase": "synthesis",
+      "prompt": "Consolidate: [\"taint\",\"wrap\",\"tokens\"]",
+      "status": "done",
+      "model": "frozen/fixture",
+      "tokens": 6100,
+      "tokenUsage": {
+        "input": 4270,
+        "output": 1830
+      },
+      "result": "{\"summary\":\"All three surveys kept: taint, wrap, tokens.\",\"byInput\":[{\"id\":\"taint\",\"kept\":true,\"dropped\":false,\"why\":\"evidence present\"},{\"id\":\"wrap\",\"kept\":true,\"dropped\":false,\"why\":\"evidence present\"},{\"id\":\"tokens\",\"kept\":true,\"dropped\":false,\"why\":\"evidence present\"}]}",
+      "resultPreview": "{\"summary\":\"All three surveys kept: taint, wrap, tokens.\",\"byInput\":[{\"id\":\"taint\",\"kept\":true,\"dropped\":false,\"why\":\"ev",
+      "startedAt": "2026-01-01T00:00:00.000Z",
+      "endedAt": "2026-01-01T00:01:00.000Z"
+    }
+  ],
+  "logs": [],
+  "phases": [
+    "recon",
+    "synthesis"
+  ],
+  "result": "{\"summary\":\"All three surveys kept: taint, wrap, tokens.\",\"byInput\":[{\"id\":\"taint\",\"kept\":true,\"dropped\":false,\"why\":\"evidence present\"},{\"id\":\"wrap\",\"kept\":true,\"dropped\":false,\"why\":\"evidence present\"},{\"id\":\"tokens\",\"kept\":true,\"dropped\":false,\"why\":\"evidence present\"}]}",
+  "tokenUsage": {},
+  "startedAt": "2026-01-01T00:00:00.000Z",
+  "completedAt": "2026-01-01T00:05:00.000Z"
+}

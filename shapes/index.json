@@ -1,0 +1,11 @@
+{
+  "shapes": {
+    "recon": "d40301d2443254db33a9317096bd446ec45f07a708cd52ae87005c43702a4a2b",
+    "spec": "98259109c6d60854880d0d57ea957584a6191fc52a8a8acee97e3b2615f0d9d1",
+    "implement": "55f2cdeeb61d1901bafebc8e194bb786450dc4686b0d893df22fe1c25cc0369f",
+    "verify": "e5650902b3aac2d4cce3400d4cb2ff5c39e8a9201c091fc54d7cadc0535bc03b",
+    "review": "4748a48c9e0d1cdc7887625db337fae9afcb9ef5576fb94350c2f1766126b489",
+    "synthesis": "07c7e6a811af3db5d92b0a6988715abc4a14407bda58444800ef6cf867068957"
+  },
+  "harness": "3.6.0"
+}

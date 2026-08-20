@@ -1,0 +1,99 @@
+{
+  "synthetic": true,
+  "recordedBy": "eval/fixtures/record.mjs",
+  "scenario": "pass",
+  "scriptSha256": "014a914eab5f77b20921b40afc86eb53aba429c8cf3553d90be85065fe3a3574",
+  "runId": "A-01-fanout-consolidate-rep2",
+  "workflowName": "01-fanout-consolidate [A]",
+  "args": {
+    "arm": "A",
+    "variant": "01-fanout-consolidate",
+    "rep": 2,
+    "seededFault": false,
+    "faultStage": null
+  },
+  "status": "completed",
+  "agents": [
+    {
+      "id": "recon-taint-1",
+      "callId": "c-recon-taint",
+      "label": "recon-taint",
+      "phase": "recon",
+      "prompt": "Survey src/taint",
+      "status": "done",
+      "model": "frozen/fixture",
+      "tokens": 4000,
+      "tokenUsage": {
+        "input": 2800,
+        "output": 1200
+      },
+      "result": "taint: reads the AST, evidence is the corpus probe over 205 scripts.",
+      "resultPreview": "taint: reads the AST, evidence is the corpus probe over 205 scripts.",
+      "startedAt": "2026-01-01T00:00:00.000Z",
+      "endedAt": "2026-01-01T00:01:00.000Z"
+    },
+    {
+      "id": "recon-wrap-1",
+      "callId": "c-recon-wrap",
+      "label": "recon-wrap",
+      "phase": "recon",
+      "prompt": "Survey src/wrap",
+      "status": "done",
+      "model": "frozen/fixture",
+      "tokens": 4000,
+      "tokenUsage": {
+        "input": 2800,
+        "output": 1200
+      },
+      "result": "wrap: reads the AST, evidence is the corpus probe over 205 scripts.",
+      "resultPreview": "wrap: reads the AST, evidence is the corpus probe over 205 scripts.",
+      "startedAt": "2026-01-01T00:00:00.000Z",
+      "endedAt": "2026-01-01T00:01:00.000Z"
+    },
+    {
+      "id": "recon-tokens-1",
+      "callId": "c-recon-tokens",
+      "label": "recon-tokens",
+      "phase": "recon",
+      "prompt": "Survey src/tokens",
+      "status": "done",
+      "model": "frozen/fixture",
+      "tokens": 4000,
+      "tokenUsage": {
+        "input": 2800,
+        "output": 1200
+      },
+      "result": "tokens: reads the AST, evidence is the corpus probe over 205 scripts.",
+      "resultPreview": "tokens: reads the AST, evidence is the corpus probe over 205 scripts.",
+      "startedAt": "2026-01-01T00:00:00.000Z",
+      "endedAt": "2026-01-01T00:01:00.000Z"
+    },
+    {
+      "id": "synthesis-1",
+      "callId": "c-synthesis",
+      "label": "synthesis",
+      "phase": "synthesis",
+      "prompt": "Consolidate:\n--- taint ---\ntaint: reads the AST...\n--- wrap ---\nwrap: reads the AST...\n--- tokens ---\ntokens: reads the AST...",
+      "status": "done",
+      "model": "frozen/fixture",
+      "tokens": 6000,
+      "tokenUsage": {
+        "input": 4200,
+        "output": 1800
+      },
+      "result": "All three surveys agree: taint, wrap and tokens are each backed by a corpus probe.",
+      "resultPreview": "All three surveys agree: taint, wrap and tokens are each backed by a corpus probe.",
+      "startedAt": "2026-01-01T00:00:00.000Z",
+      "endedAt": "2026-01-01T00:01:00.000Z"
+    }
+  ],
+  "logs": [],
+  "phases": [
+    "recon",
+    "synthesis"
+  ],
+  "result": "All three surveys agree: taint, wrap and tokens are each backed by a corpus probe.",
+  "tokenUsage": {},
+  "startedAt": "2026-01-01T00:00:00.000Z",
+  "completedAt": "2026-01-01T00:05:00.000Z"
+}

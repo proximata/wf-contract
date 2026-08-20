@@ -1,0 +1,2 @@
+fixtures: 50 runs → <repo>/eval/results/trial-3/runs
+next: node eval/score.mjs

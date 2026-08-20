@@ -1,0 +1,13 @@
+{
+  "id": "02-sequential-chain",
+  "stratum": "sequential",
+  "seededFault": false,
+  "faultStage": null,
+  "fanout": null,
+  "consolidator": null,
+  "stages": [
+    { "label": "recon", "shape": "recon" },
+    { "label": "spec", "shape": "spec" },
+    { "label": "implement", "shape": "implement" }
+  ]
+}

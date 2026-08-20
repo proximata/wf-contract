@@ -1,0 +1,82 @@
+{
+  "synthetic": true,
+  "recordedBy": "eval/fixtures/record.mjs",
+  "scenario": "pass",
+  "scriptSha256": "dbd37e1cfef6716a77516cf631e53075675f62d03310a56225dfe74bad0bd7e0",
+  "runId": "A-02-sequential-chain-rep4",
+  "workflowName": "02-sequential-chain [A]",
+  "args": {
+    "arm": "A",
+    "variant": "02-sequential-chain",
+    "rep": 4,
+    "seededFault": false,
+    "faultStage": null
+  },
+  "status": "completed",
+  "agents": [
+    {
+      "id": "recon-1",
+      "callId": "c-recon",
+      "label": "recon",
+      "phase": "recon",
+      "prompt": "Recon src/tokens.mjs",
+      "status": "done",
+      "model": "frozen/fixture",
+      "tokens": 3800,
+      "tokenUsage": {
+        "input": 2660,
+        "output": 1140
+      },
+      "result": "tokens.mjs estimates with ceil(len/4); the hi side assumes 5 items per uncapped array.",
+      "resultPreview": "tokens.mjs estimates with ceil(len/4); the hi side assumes 5 items per uncapped array.",
+      "startedAt": "2026-01-01T00:00:00.000Z",
+      "endedAt": "2026-01-01T00:01:00.000Z"
+    },
+    {
+      "id": "spec-1",
+      "callId": "c-spec",
+      "label": "spec",
+      "phase": "spec",
+      "prompt": "Turn this recon into a spec\n\ntokens.mjs estimates...",
+      "status": "done",
+      "model": "frozen/fixture",
+      "tokens": 5200,
+      "tokenUsage": {
+        "input": 3640,
+        "output": 1560
+      },
+      "result": "Decision: print a range, never a single number — a lower bound when the fan-out width is dynamic.",
+      "resultPreview": "Decision: print a range, never a single number — a lower bound when the fan-out width is dynamic.",
+      "startedAt": "2026-01-01T00:00:00.000Z",
+      "endedAt": "2026-01-01T00:01:00.000Z"
+    },
+    {
+      "id": "implement-1",
+      "callId": "c-implement",
+      "label": "implement",
+      "phase": "implement",
+      "prompt": "Given this spec...",
+      "status": "done",
+      "model": "frozen/fixture",
+      "tokens": 4900,
+      "tokenUsage": {
+        "input": 3430,
+        "output": 1470
+      },
+      "result": "Change src/tokens.mjs so the estimate is a bound, never a single number.",
+      "resultPreview": "Change src/tokens.mjs so the estimate is a bound, never a single number.",
+      "startedAt": "2026-01-01T00:00:00.000Z",
+      "endedAt": "2026-01-01T00:01:00.000Z"
+    }
+  ],
+  "logs": [],
+  "phases": [
+    "recon",
+    "spec",
+    "implement"
+  ],
+  "result": "Change src/tokens.mjs so the estimate is a bound, never a single number.",
+  "tokenUsage": {},
+  "startedAt": "2026-01-01T00:00:00.000Z",
+  "completedAt": "2026-01-01T00:05:00.000Z"
+}

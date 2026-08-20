@@ -1,0 +1,23 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["decisions", "nonGoals", "acceptance"],
+  "properties": {
+    "decisions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "choice", "why"],
+        "properties": {
+          "id": { "type": "string", "maxLength": 80 },
+          "choice": { "type": "string", "maxLength": 600 },
+          "why": { "type": "string", "maxLength": 400 }
+        }
+      }
+    },
+    "nonGoals": { "type": "array", "items": { "type": "string", "maxLength": 300 } },
+    "acceptance": { "type": "array", "items": { "type": "string", "maxLength": 300 } }
+  }
+}

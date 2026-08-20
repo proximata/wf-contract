@@ -1,0 +1,118 @@
+{
+  "schema": "wf-contract/eval-summary@1",
+  "note": "No timestamp field by design — this artefact must be byte-diffable across regenerations. See RESULTS.md D-2.",
+  "verdict": "untested",
+  "evidence": false,
+  "h1": {
+    "claim": "Contracts convert silent wrong answers into loud, located failures at a named edge, without costing more correctness than they buy.",
+    "status": "untested",
+    "held": null,
+    "armBWon": null,
+    "why": "Zero live agent runs. All 150 run records across 3 trials are synthetic fixtures; the scorer's synthetic interlock forced every falsifier to not-evaluable."
+  },
+  "coverage": {
+    "liveRuns": 0,
+    "runs": 50,
+    "runsDesigned": 180,
+    "pairs": 25,
+    "pairsDesigned": 90,
+    "tasks": 3,
+    "tasksDesigned": 12,
+    "reps": 5,
+    "fractionOfDesignedVolume": 0.278,
+    "detectionFloor": "wider than ~20pp — design floor assumes 90 pairs, this run has 25",
+    "repsAreObservedNondeterminism": false
+  },
+  "trials": [
+    {
+      "id": "trial-1",
+      "runs": 50,
+      "kept": ["harness-validity"],
+      "dropped": ["h1-evidence"],
+      "why": "50/50 runs carry synthetic:true; --live exits 2 for want of an adapter. Found D-1 and D-2.",
+      "runsSha256Prefix": "7d7dcd251d0cb7bc"
+    },
+    {
+      "id": "trial-2",
+      "runs": 50,
+      "kept": ["harness-validity", "determinism-replicate"],
+      "dropped": ["h1-evidence", "independent-replication"],
+      "why": "Run set byte-identical to trial-1, so it adds zero independent bits about H1. Independently confirmed D-2.",
+      "runsSha256Prefix": "7d7dcd251d0cb7bc"
+    },
+    {
+      "id": "trial-3",
+      "runs": 50,
+      "kept": ["harness-validity", "determinism-replicate"],
+      "dropped": ["h1-evidence", "independent-replication"],
+      "why": "Run set byte-identical to trial-1. Found D-3 (score.mjs ignores --runs for output path).",
+      "runsSha256Prefix": "7d7dcd251d0cb7bc"
+    }
+  ],
+  "trialsIndependent": false,
+  "reportShaGeneratedAtStripped": "0ccb79425f152769",
+  "contradictionResolved": {
+    "what": "trial-1 scored rescore-determinism FAIL, trial-3 PASS",
+    "resolution": "different artefacts: report.md has no timestamp and is byte-deterministic; report.json carries generatedAt and is not. Both observations correct.",
+    "recordedAs": "D-2"
+  },
+  "numbers": {
+    "quotable": false,
+    "whyNotQuotable": "Hand-authored fixture properties from eval/fixtures/**, identical in all three trials. Not measurements of any model.",
+    "task_pass": { "A": 0.44, "B": 0.6 },
+    "silent_wrong": { "A": 0.56, "B": 0.0 },
+    "mcnemar_silent_wrong": { "b": 14, "c": 0, "n": 14, "p": 0.0001220703125, "pairs": 25 },
+    "medianTokens": { "A": 13900, "B": 13300 },
+    "fields_addressable": { "A": 0.0, "B": 0.7, "trueByConstructionInB": true },
+    "null_fed": { "A": 0.4, "B": 0.0, "mechanismCheck": true, "evidence": false },
+    "located_failure_seeded": { "A": 0.0, "B": 1.0, "pairs": 10, "b": 0, "c": 10, "p": 0.001953125 },
+    "evidence_replay_B": { "measurable": 5, "mismatch": 1, "mismatchRate": 0.2, "cleanCheckout": false },
+    "branch_drop": { "A": { "runs": 7, "detectable": false }, "B": { "runs": 5, "detectable": true } }
+  },
+  "falsifiers": {
+    "evaluated": 0,
+    "total": 6,
+    "fired": 0,
+    "passed": 0,
+    "notAsked": 6,
+    "detail": [
+      { "id": "F-A", "claim": "task_pass(B) < task_pass(A) - 10pp", "outcome": "not-evaluable", "why": "synthetic fixtures; the live risk remains entirely untested", "observed": "A 44% · B 60%" },
+      { "id": "F-B", "claim": "median tokens(B) > 1.5x A", "outcome": "not-evaluable", "why": "synthetic fixtures", "observed": "A 13900 · B 13300" },
+      { "id": "F-C", "claim": "evidence_replay mismatch in B > 20%", "outcome": "not-evaluable", "why": "synthetic fixtures; 20% sits exactly at threshold on planted data", "observed": "1 of 5 measurable" },
+      { "id": "F-D", "claim": "gate false positives > 5%", "outcome": "not-evaluable", "why": "out of harness scope (measured by `wf-contract corpus`) and unmeasured there: 0 of 30 required hand-audits done", "observed": "corpus 168 blocked / 37 clean of 205; spec expects 166 / 44" },
+      { "id": "F-E", "claim": ">2 of 12 tasks need a shape outside the six", "outcome": "not-evaluable", "why": "synthetic fixtures; only 3 tasks exist", "observed": "0 B runs failed their declared shape" },
+      { "id": "F-F", "claim": "located_failure(B) <= A on seeded faults", "outcome": "not-evaluable", "why": "synthetic fixtures", "observed": "A 0% · B 100%" }
+    ]
+  },
+  "harnessResults": [
+    { "id": "H-1", "claim": "synthetic interlock cannot be bypassed", "held": true, "evidence": "3/3 trials: all 6 falsifiers not-evaluable, header prints NOT EVIDENCE" },
+    { "id": "H-2", "claim": "arm difference is mechanically enforced", "held": true, "evidence": "run.mjs refuses to start unless every A.js exits 1 and every B.js exits 0 under `wf-contract check`; test/eval.test.mjs 4/4" },
+    { "id": "H-3", "claim": "S6 detects fabricated evidence by real re-execution", "held": true, "evidence": "1 of 5 measurable B replays mismatched on the planted fixture; real exit code compared, not self-reported" },
+    { "id": "H-4", "claim": "live mode refuses to invent runs", "held": true, "evidence": "exit 2 naming $WF_EVAL_LIVE_CMD in 3/3 trials" }
+  ],
+  "blockers": [
+    { "id": "D-1", "severity": "block", "what": "no $WF_EVAL_LIVE_CMD adapter exists", "effect": "no live run is possible; H1 cannot be tested" },
+    { "id": "D-2", "severity": "warn", "what": "report.json carries generatedAt", "effect": "machine artefact not byte-diffable trial-to-trial" },
+    { "id": "D-3", "severity": "warn", "what": "score.mjs hardcodes eval/out/ for output", "effect": "--runs selects input only; per-trial dirs are manual copies" },
+    { "id": "D-4", "severity": "warn", "what": "3 of 12 tasks, 25 of 90 pairs", "effect": "underpowered against the ~20pp design floor even once live" },
+    { "id": "D-5", "severity": "warn", "what": "not a git repository", "effect": "D21 pre-registration is asserted, not provable from log ordering" },
+    { "id": "D-6", "severity": "warn", "what": "S6 replays in the working tree", "effect": "cleanCheckout:false; D26 requires a clean checkout" },
+    { "id": "D-7", "severity": "warn", "what": "gate corpus 168 blocked / 37 clean vs spec 166 / 44, F-D unaudited", "effect": "published 78.5% passthrough figure must not be restated from this build" }
+  ],
+  "doNotQuote": [
+    "silent_wrong 56% -> 0%",
+    "McNemar p=0.0001",
+    "fields_addressable 0% -> 70%",
+    "task_pass +16pp",
+    "located_failure 0% -> 100%"
+  ],
+  "chips": [
+    { "label": "H1", "value": "untested", "tone": "warn" },
+    { "label": "live runs", "value": "0", "tone": "warn" },
+    { "label": "falsifiers evaluated", "value": "0 / 6", "tone": "warn" },
+    { "label": "eval runs", "value": "50 synthetic / 180 designed", "tone": "warn" },
+    { "label": "eval tasks", "value": "3 / 12", "tone": "warn" },
+    { "label": "harness self-tests", "value": "4 / 4 pass", "tone": "ok" },
+    { "label": "gate corpus", "value": "168 blocked · 37 clean · 205", "tone": "info" }
+  ]
+}

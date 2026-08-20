@@ -1,0 +1,23 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["found", "gaps", "confidence"],
+  "properties": {
+    "found": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "claim", "evidence"],
+        "properties": {
+          "id": { "type": "string", "maxLength": 80 },
+          "claim": { "type": "string", "maxLength": 600 },
+          "evidence": { "type": "string", "maxLength": 2000 },
+          "shape": { "type": "string", "maxLength": 40 }
+        }
+      }
+    },
+    "gaps": { "type": "array", "items": { "type": "string", "maxLength": 300 } },
+    "confidence": { "type": "string", "enum": ["low", "med", "high"] }
+  }
+}

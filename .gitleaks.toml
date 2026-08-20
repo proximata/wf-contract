@@ -1,0 +1,9 @@
+# gitleaks config — entropy/regex secret scanning (complements psst vault-value matching).
+[extend]
+useDefault = true
+
+# Project false positives (public IDs, fixtures). gitleaks rejects an empty
+# [allowlist], so it stays commented out until there is a real entry.
+# [allowlist]
+# description = "Project false positives"
+# paths = ['''^eval/fixtures/''']

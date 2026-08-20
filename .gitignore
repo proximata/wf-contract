@@ -1,0 +1,17 @@
+node_modules/
+# Eval working directory. Fixtures under eval/fixtures/ ARE tracked; results are not.
+eval/out/
+# Overlays are per-machine by default; only the example is tracked.
+overlays/*.sh
+!overlays/*.sh.example
+.env
+.env.local
+.env.*.local
+.psst/
+*.pem
+*.key
+id_rsa
+id_ed25519
+
+# mined verbatim from private workflow traces — not for publication
+failures.json

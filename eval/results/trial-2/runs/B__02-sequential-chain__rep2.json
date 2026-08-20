@@ -1,0 +1,82 @@
+{
+  "synthetic": true,
+  "recordedBy": "eval/fixtures/record.mjs",
+  "scenario": "pass",
+  "scriptSha256": "5bc82eda9ed6ea39c72a15549112ea4b36469451d29a6bafd044831d01dafd4f",
+  "runId": "B-02-sequential-chain-rep2",
+  "workflowName": "02-sequential-chain [B]",
+  "args": {
+    "arm": "B",
+    "variant": "02-sequential-chain",
+    "rep": 2,
+    "seededFault": false,
+    "faultStage": null
+  },
+  "status": "completed",
+  "agents": [
+    {
+      "id": "recon-1",
+      "callId": "c-recon",
+      "label": "recon",
+      "phase": "recon",
+      "prompt": "Recon src/tokens.mjs",
+      "status": "done",
+      "model": "frozen/fixture",
+      "tokens": 3900,
+      "tokenUsage": {
+        "input": 2730,
+        "output": 1170
+      },
+      "result": "{\"found\":[{\"id\":\"F1\",\"claim\":\"estimate is ceil(len/4)\",\"evidence\":\"src/tokens.mjs, runtime formula\"}],\"gaps\":[\"output tokens unmeasured\"],\"confidence\":\"med\"}",
+      "resultPreview": "{\"found\":[{\"id\":\"F1\",\"claim\":\"estimate is ceil(len/4)\",\"evidence\":\"src/tokens.mjs, runtime formula\"}],\"gaps\":[\"output to",
+      "startedAt": "2026-01-01T00:00:00.000Z",
+      "endedAt": "2026-01-01T00:01:00.000Z"
+    },
+    {
+      "id": "spec-1",
+      "callId": "c-spec",
+      "label": "spec",
+      "phase": "spec",
+      "prompt": "Turn this recon into a spec\n\nclaims: [...]",
+      "status": "done",
+      "model": "frozen/fixture",
+      "tokens": 5300,
+      "tokenUsage": {
+        "input": 3710,
+        "output": 1590
+      },
+      "result": "{\"decisions\":[{\"id\":\"D1\",\"choice\":\"print a bound, never a single number\",\"why\":\"no baseline to calibrate a point estimate\"}],\"nonGoals\":[\"no currency figure\"],\"acceptance\":[\"token line prints lo … hi\"]}",
+      "resultPreview": "{\"decisions\":[{\"id\":\"D1\",\"choice\":\"print a bound, never a single number\",\"why\":\"no baseline to calibrate a point estimat",
+      "startedAt": "2026-01-01T00:00:00.000Z",
+      "endedAt": "2026-01-01T00:01:00.000Z"
+    },
+    {
+      "id": "implement-1",
+      "callId": "c-implement",
+      "label": "implement",
+      "phase": "implement",
+      "prompt": "Given this spec\n\ndecisions: [...]",
+      "status": "done",
+      "model": "frozen/fixture",
+      "tokens": 5000,
+      "tokenUsage": {
+        "input": 3500,
+        "output": 1500
+      },
+      "result": "{\"changed\":[{\"path\":\"src/tokens.mjs\",\"why\":\"estimate rendered as a bound, not a number\"}],\"skipped\":[\"output-token estimation\"],\"risks\":[\"hi side assumes 5 items per uncapped array\"]}",
+      "resultPreview": "{\"changed\":[{\"path\":\"src/tokens.mjs\",\"why\":\"estimate rendered as a bound, not a number\"}],\"skipped\":[\"output-token estim",
+      "startedAt": "2026-01-01T00:00:00.000Z",
+      "endedAt": "2026-01-01T00:01:00.000Z"
+    }
+  ],
+  "logs": [],
+  "phases": [
+    "recon",
+    "spec",
+    "implement"
+  ],
+  "result": "{\"changed\":[{\"path\":\"src/tokens.mjs\",\"why\":\"estimate rendered as a bound, not a number\"}],\"skipped\":[\"output-token estimation\"],\"risks\":[\"hi side assumes 5 items per uncapped array\"]}",
+  "tokenUsage": {},
+  "startedAt": "2026-01-01T00:00:00.000Z",
+  "completedAt": "2026-01-01T00:05:00.000Z"
+}

@@ -1,0 +1,82 @@
+{
+  "synthetic": true,
+  "recordedBy": "eval/fixtures/record.mjs",
+  "scenario": "pass",
+  "scriptSha256": "761bae07cd1d59f9d0202cb2ecbdf66ae88b2dccf0e6cb60c47d4a7f9213018e",
+  "runId": "B-03-verify-heavy-rep1",
+  "workflowName": "03-verify-heavy [B]",
+  "args": {
+    "arm": "B",
+    "variant": "03-verify-heavy",
+    "rep": 1,
+    "seededFault": false,
+    "faultStage": null
+  },
+  "status": "completed",
+  "agents": [
+    {
+      "id": "implement-1",
+      "callId": "c-implement",
+      "label": "implement",
+      "phase": "implement",
+      "prompt": "Report the change",
+      "status": "done",
+      "model": "frozen/fixture",
+      "tokens": 3700,
+      "tokenUsage": {
+        "input": 2590,
+        "output": 1110
+      },
+      "result": "{\"changed\":[{\"path\":\"shapes/verify.json\",\"why\":\"evidence made required, minLength 1\"}],\"skipped\":[],\"risks\":[\"1200-char cap may refuse a long log\"]}",
+      "resultPreview": "{\"changed\":[{\"path\":\"shapes/verify.json\",\"why\":\"evidence made required, minLength 1\"}],\"skipped\":[],\"risks\":[\"1200-char ",
+      "startedAt": "2026-01-01T00:00:00.000Z",
+      "endedAt": "2026-01-01T00:01:00.000Z"
+    },
+    {
+      "id": "verify-1",
+      "callId": "c-verify",
+      "label": "verify",
+      "phase": "verify",
+      "prompt": "Verify this change\n\nchanged: [...]",
+      "status": "done",
+      "model": "frozen/fixture",
+      "tokens": 5200,
+      "tokenUsage": {
+        "input": 3640,
+        "output": 1560
+      },
+      "result": "{\"checks\":[{\"name\":\"shape self-check\",\"cmd\":\"node schemas/check.mjs\",\"pass\":true,\"evidence\":\"exit 0, 12/12 ok\"}],\"verdict\":\"pass\"}",
+      "resultPreview": "{\"checks\":[{\"name\":\"shape self-check\",\"cmd\":\"node schemas/check.mjs\",\"pass\":true,\"evidence\":\"exit 0, 12/12 ok\"}],\"verdic",
+      "startedAt": "2026-01-01T00:00:00.000Z",
+      "endedAt": "2026-01-01T00:01:00.000Z"
+    },
+    {
+      "id": "review-1",
+      "callId": "c-review",
+      "label": "review",
+      "phase": "review",
+      "prompt": "Review this verification\n\nverdict: pass",
+      "status": "done",
+      "model": "frozen/fixture",
+      "tokens": 4400,
+      "tokenUsage": {
+        "input": 3080,
+        "output": 1320
+      },
+      "result": "{\"findings\":[{\"sev\":\"minor\",\"loc\":\"shapes/verify.json\",\"claim\":\"cap may refuse a long log\",\"fix\":\"raise to 2000\"}],\"blocking\":false}",
+      "resultPreview": "{\"findings\":[{\"sev\":\"minor\",\"loc\":\"shapes/verify.json\",\"claim\":\"cap may refuse a long log\",\"fix\":\"raise to 2000\"}],\"bloc",
+      "startedAt": "2026-01-01T00:00:00.000Z",
+      "endedAt": "2026-01-01T00:01:00.000Z"
+    }
+  ],
+  "logs": [],
+  "phases": [
+    "implement",
+    "verify",
+    "review"
+  ],
+  "result": "{\"findings\":[{\"sev\":\"minor\",\"loc\":\"shapes/verify.json\",\"claim\":\"cap may refuse a long log\",\"fix\":\"raise to 2000\"}],\"blocking\":false}",
+  "tokenUsage": {},
+  "startedAt": "2026-01-01T00:00:00.000Z",
+  "completedAt": "2026-01-01T00:05:00.000Z"
+}

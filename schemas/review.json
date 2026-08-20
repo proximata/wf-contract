@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "review",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["findings", "blocking"],
+  "properties": {
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["sev", "loc", "claim", "fix"],
+        "properties": {
+          "sev": { "type": "string", "enum": ["blocker", "major", "minor", "nit"] },
+          "loc": { "type": "string", "minLength": 1, "maxLength": 200 },
+          "claim": { "type": "string", "minLength": 1, "maxLength": 500 },
+          "fix": { "type": "string", "minLength": 1, "maxLength": 500 }
+        }
+      }
+    },
+    "blocking": { "type": "boolean" }
+  }
+}

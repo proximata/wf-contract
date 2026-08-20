@@ -1,0 +1,23 @@
+{
+  "name": "wf-contract",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Preflight check for pi-dynamic-workflows: refuses stages that pass raw prose.",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "bin": {
+    "wf-contract": "bin/wf-contract.mjs"
+  },
+  "scripts": {
+    "test": "node --test test/gate.test.mjs test/eval.test.mjs",
+    "shapes": "node scripts/gen-shapes.mjs",
+    "eval": "node eval/run.mjs && node eval/score.mjs",
+    "eval:record": "node eval/fixtures/record.mjs"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "acorn": "^8.18.0"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "id": "03-verify-heavy",
+  "stratum": "verify",
+  "seededFault": true,
+  "faultStage": "implement",
+  "fanout": null,
+  "consolidator": null,
+  "replay": true,
+  "stages": [
+    { "label": "implement", "shape": "implement" },
+    { "label": "verify", "shape": "verify" },
+    { "label": "review", "shape": "review" }
+  ]
+}

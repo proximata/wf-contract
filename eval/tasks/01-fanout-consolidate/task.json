@@ -1,0 +1,14 @@
+{
+  "id": "01-fanout-consolidate",
+  "stratum": "fanout",
+  "seededFault": true,
+  "faultStage": "recon-wrap",
+  "fanout": { "stage": "recon", "width": 3, "branchIds": ["taint", "wrap", "tokens"] },
+  "consolidator": "synthesis",
+  "stages": [
+    { "label": "recon-taint", "shape": "recon" },
+    { "label": "recon-wrap", "shape": "recon" },
+    { "label": "recon-tokens", "shape": "recon" },
+    { "label": "synthesis", "shape": "synthesis" }
+  ]
+}

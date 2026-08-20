@@ -1,0 +1,3611 @@
+{
+  "generatedAt": "2026-08-20T21:59:59.968Z",
+  "synthetic": true,
+  "runs": 50,
+  "pairs": 25,
+  "detectionFloor": "wider than ~20pp — design floor assumes 90 pairs, this run has 25",
+  "arms": {
+    "A": {
+      "runs": 25,
+      "task_pass": 0.44,
+      "silent_wrong": 0.56,
+      "null_fed": 0.4,
+      "medianTokens": 13900,
+      "retries": 0,
+      "fields_addressable": 0
+    },
+    "B": {
+      "runs": 25,
+      "task_pass": 0.6,
+      "silent_wrong": 0,
+      "null_fed": 0,
+      "medianTokens": 13300,
+      "retries": 0,
+      "fields_addressable": 0.7
+    }
+  },
+  "mcnemar": {
+    "silent_wrong": {
+      "b": 14,
+      "c": 0,
+      "n": 14,
+      "p": 0.00012207031250000005,
+      "pairs": 25
+    },
+    "located_failure_seeded": {
+      "b": 0,
+      "c": 10,
+      "n": 10,
+      "p": 0.001953125,
+      "pairs": 10
+    }
+  },
+  "branchDrop": {
+    "A": [
+      {
+        "variant": "01-fanout-consolidate--fault",
+        "rep": 1,
+        "dropped": [
+          "wrap"
+        ],
+        "detectable": false
+      },
+      {
+        "variant": "01-fanout-consolidate--fault",
+        "rep": 2,
+        "dropped": [
+          "wrap"
+        ],
+        "detectable": false
+      },
+      {
+        "variant": "01-fanout-consolidate--fault",
+        "rep": 3,
+        "dropped": [
+          "wrap"
+        ],
+        "detectable": false
+      },
+      {
+        "variant": "01-fanout-consolidate--fault",
+        "rep": 4,
+        "dropped": [
+          "wrap"
+        ],
+        "detectable": false
+      },
+      {
+        "variant": "01-fanout-consolidate--fault",
+        "rep": 5,
+        "dropped": [
+          "wrap"
+        ],
+        "detectable": false
+      },
+      {
+        "variant": "01-fanout-consolidate",
+        "rep": 1,
+        "dropped": [],
+        "detectable": false
+      },
+      {
+        "variant": "01-fanout-consolidate",
+        "rep": 2,
+        "dropped": [],
+        "detectable": false
+      },
+      {
+        "variant": "01-fanout-consolidate",
+        "rep": 3,
+        "dropped": [
+          "wrap"
+        ],
+        "detectable": false
+      },
+      {
+        "variant": "01-fanout-consolidate",
+        "rep": 4,
+        "dropped": [],
+        "detectable": false
+      },
+      {
+        "variant": "01-fanout-consolidate",
+        "rep": 5,
+        "dropped": [
+          "wrap"
+        ],
+        "detectable": false
+      }
+    ],
+    "B": [
+      {
+        "variant": "01-fanout-consolidate--fault",
+        "rep": 1,
+        "dropped": [
+          "taint",
+          "wrap",
+          "tokens"
+        ],
+        "detectable": true
+      },
+      {
+        "variant": "01-fanout-consolidate--fault",
+        "rep": 2,
+        "dropped": [
+          "taint",
+          "wrap",
+          "tokens"
+        ],
+        "detectable": true
+      },
+      {
+        "variant": "01-fanout-consolidate--fault",
+        "rep": 3,
+        "dropped": [
+          "taint",
+          "wrap",
+          "tokens"
+        ],
+        "detectable": true
+      },
+      {
+        "variant": "01-fanout-consolidate--fault",
+        "rep": 4,
+        "dropped": [
+          "taint",
+          "wrap",
+          "tokens"
+        ],
+        "detectable": true
+      },
+      {
+        "variant": "01-fanout-consolidate--fault",
+        "rep": 5,
+        "dropped": [
+          "taint",
+          "wrap",
+          "tokens"
+        ],
+        "detectable": true
+      },
+      {
+        "variant": "01-fanout-consolidate",
+        "rep": 1,
+        "dropped": [],
+        "detectable": true
+      },
+      {
+        "variant": "01-fanout-consolidate",
+        "rep": 2,
+        "dropped": [],
+        "detectable": true
+      },
+      {
+        "variant": "01-fanout-consolidate",
+        "rep": 3,
+        "dropped": [],
+        "detectable": true
+      },
+      {
+        "variant": "01-fanout-consolidate",
+        "rep": 4,
+        "dropped": [],
+        "detectable": true
+      },
+      {
+        "variant": "01-fanout-consolidate",
+        "rep": 5,
+        "dropped": [],
+        "detectable": true
+      }
+    ]
+  },
+  "evidenceReplay": {
+    "B": {
+      "measurable": 5,
+      "mismatchRate": 0.2,
+      "cleanCheckout": false
+    }
+  },
+  "falsifiers": [
+    {
+      "id": "F-A",
+      "claim": "task_pass(B) < task_pass(A) − 10pp",
+      "verdict": "not-evaluable (synthetic fixtures)",
+      "detail": "A 44% · B 60%"
+    },
+    {
+      "id": "F-B",
+      "claim": "median tokens(B) > 1.5 × median tokens(A)",
+      "verdict": "not-evaluable (synthetic fixtures)",
+      "detail": "A 13900 · B 13300"
+    },
+    {
+      "id": "F-C",
+      "claim": "evidence_replay mismatch in B > 20%",
+      "verdict": "not-evaluable (synthetic fixtures)",
+      "detail": "20% of 5 measurable"
+    },
+    {
+      "id": "F-D",
+      "claim": "gate false positives > 5%",
+      "verdict": "not-evaluable (synthetic fixtures)",
+      "detail": "measured by `wf-contract corpus`, not by this harness"
+    },
+    {
+      "id": "F-E",
+      "claim": ">2 of 12 tasks need a shape outside the six",
+      "verdict": "not-evaluable (synthetic fixtures)",
+      "detail": "0 B runs had a structured stage failing its declared shape"
+    },
+    {
+      "id": "F-F",
+      "claim": "located_failure(B) ≤ located_failure(A) on the seeded-fault subset",
+      "verdict": "not-evaluable (synthetic fixtures)",
+      "detail": "A 0% · B 100% · 10 pairs"
+    }
+  ],
+  "rows": [
+    {
+      "arm": "A",
+      "variant": "01-fanout-consolidate--fault",
+      "taskId": "01-fanout-consolidate",
+      "fault": true,
+      "rep": 1,
+      "task_pass": false,
+      "silent_wrong": true,
+      "located_failure": false,
+      "null_fed": true,
+      "tokens": 18000,
+      "retries": 0,
+      "status": "completed",
+      "stages": [
+        {
+          "label": "recon-taint",
+          "shape": "recon",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "found",
+            "gaps",
+            "confidence"
+          ]
+        },
+        {
+          "label": "recon-wrap",
+          "shape": "recon",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "found",
+            "gaps",
+            "confidence"
+          ]
+        },
+        {
+          "label": "recon-tokens",
+          "shape": "recon",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "found",
+            "gaps",
+            "confidence"
+          ]
+        },
+        {
+          "label": "synthesis",
+          "shape": "synthesis",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "summary",
+            "byInput"
+          ]
+        }
+      ],
+      "schema_valid": 0,
+      "fields_addressable": 0,
+      "branch_drop": {
+        "dropped": [
+          "wrap"
+        ],
+        "detectable": false
+      },
+      "evidence_replay": null
+    },
+    {
+      "arm": "A",
+      "variant": "01-fanout-consolidate--fault",
+      "taskId": "01-fanout-consolidate",
+      "fault": true,
+      "rep": 2,
+      "task_pass": false,
+      "silent_wrong": true,
+      "located_failure": false,
+      "null_fed": true,
+      "tokens": 18000,
+      "retries": 0,
+      "status": "completed",
+      "stages": [
+        {
+          "label": "recon-taint",
+          "shape": "recon",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "found",
+            "gaps",
+            "confidence"
+          ]
+        },
+        {
+          "label": "recon-wrap",
+          "shape": "recon",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "found",
+            "gaps",
+            "confidence"
+          ]
+        },
+        {
+          "label": "recon-tokens",
+          "shape": "recon",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "found",
+            "gaps",
+            "confidence"
+          ]
+        },
+        {
+          "label": "synthesis",
+          "shape": "synthesis",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "summary",
+            "byInput"
+          ]
+        }
+      ],
+      "schema_valid": 0,
+      "fields_addressable": 0,
+      "branch_drop": {
+        "dropped": [
+          "wrap"
+        ],
+        "detectable": false
+      },
+      "evidence_replay": null
+    },
+    {
+      "arm": "A",
+      "variant": "01-fanout-consolidate--fault",
+      "taskId": "01-fanout-consolidate",
+      "fault": true,
+      "rep": 3,
+      "task_pass": false,
+      "silent_wrong": true,
+      "located_failure": false,
+      "null_fed": true,
+      "tokens": 18000,
+      "retries": 0,
+      "status": "completed",
+      "stages": [
+        {
+          "label": "recon-taint",
+          "shape": "recon",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "found",
+            "gaps",
+            "confidence"
+          ]
+        },
+        {
+          "label": "recon-wrap",
+          "shape": "recon",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "found",
+            "gaps",
+            "confidence"
+          ]
+        },
+        {
+          "label": "recon-tokens",
+          "shape": "recon",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "found",
+            "gaps",
+            "confidence"
+          ]
+        },
+        {
+          "label": "synthesis",
+          "shape": "synthesis",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "summary",
+            "byInput"
+          ]
+        }
+      ],
+      "schema_valid": 0,
+      "fields_addressable": 0,
+      "branch_drop": {
+        "dropped": [
+          "wrap"
+        ],
+        "detectable": false
+      },
+      "evidence_replay": null
+    },
+    {
+      "arm": "A",
+      "variant": "01-fanout-consolidate--fault",
+      "taskId": "01-fanout-consolidate",
+      "fault": true,
+      "rep": 4,
+      "task_pass": false,
+      "silent_wrong": true,
+      "located_failure": false,
+      "null_fed": true,
+      "tokens": 18000,
+      "retries": 0,
+      "status": "completed",
+      "stages": [
+        {
+          "label": "recon-taint",
+          "shape": "recon",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "found",
+            "gaps",
+            "confidence"
+          ]
+        },
+        {
+          "label": "recon-wrap",
+          "shape": "recon",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "found",
+            "gaps",
+            "confidence"
+          ]
+        },
+        {
+          "label": "recon-tokens",
+          "shape": "recon",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "found",
+            "gaps",
+            "confidence"
+          ]
+        },
+        {
+          "label": "synthesis",
+          "shape": "synthesis",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "summary",
+            "byInput"
+          ]
+        }
+      ],
+      "schema_valid": 0,
+      "fields_addressable": 0,
+      "branch_drop": {
+        "dropped": [
+          "wrap"
+        ],
+        "detectable": false
+      },
+      "evidence_replay": null
+    },
+    {
+      "arm": "A",
+      "variant": "01-fanout-consolidate--fault",
+      "taskId": "01-fanout-consolidate",
+      "fault": true,
+      "rep": 5,
+      "task_pass": false,
+      "silent_wrong": true,
+      "located_failure": false,
+      "null_fed": true,
+      "tokens": 18000,
+      "retries": 0,
+      "status": "completed",
+      "stages": [
+        {
+          "label": "recon-taint",
+          "shape": "recon",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "found",
+            "gaps",
+            "confidence"
+          ]
+        },
+        {
+          "label": "recon-wrap",
+          "shape": "recon",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "found",
+            "gaps",
+            "confidence"
+          ]
+        },
+        {
+          "label": "recon-tokens",
+          "shape": "recon",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "found",
+            "gaps",
+            "confidence"
+          ]
+        },
+        {
+          "label": "synthesis",
+          "shape": "synthesis",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "summary",
+            "byInput"
+          ]
+        }
+      ],
+      "schema_valid": 0,
+      "fields_addressable": 0,
+      "branch_drop": {
+        "dropped": [
+          "wrap"
+        ],
+        "detectable": false
+      },
+      "evidence_replay": null
+    },
+    {
+      "arm": "A",
+      "variant": "01-fanout-consolidate",
+      "taskId": "01-fanout-consolidate",
+      "fault": false,
+      "rep": 1,
+      "task_pass": true,
+      "silent_wrong": false,
+      "located_failure": false,
+      "null_fed": false,
+      "tokens": 18000,
+      "retries": 0,
+      "status": "completed",
+      "stages": [
+        {
+          "label": "recon-taint",
+          "shape": "recon",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "found",
+            "gaps",
+            "confidence"
+          ]
+        },
+        {
+          "label": "recon-wrap",
+          "shape": "recon",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "found",
+            "gaps",
+            "confidence"
+          ]
+        },
+        {
+          "label": "recon-tokens",
+          "shape": "recon",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "found",
+            "gaps",
+            "confidence"
+          ]
+        },
+        {
+          "label": "synthesis",
+          "shape": "synthesis",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "summary",
+            "byInput"
+          ]
+        }
+      ],
+      "schema_valid": 0,
+      "fields_addressable": 0,
+      "branch_drop": {
+        "dropped": [],
+        "detectable": false
+      },
+      "evidence_replay": null
+    },
+    {
+      "arm": "A",
+      "variant": "01-fanout-consolidate",
+      "taskId": "01-fanout-consolidate",
+      "fault": false,
+      "rep": 2,
+      "task_pass": true,
+      "silent_wrong": false,
+      "located_failure": false,
+      "null_fed": false,
+      "tokens": 18000,
+      "retries": 0,
+      "status": "completed",
+      "stages": [
+        {
+          "label": "recon-taint",
+          "shape": "recon",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "found",
+            "gaps",
+            "confidence"
+          ]
+        },
+        {
+          "label": "recon-wrap",
+          "shape": "recon",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "found",
+            "gaps",
+            "confidence"
+          ]
+        },
+        {
+          "label": "recon-tokens",
+          "shape": "recon",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "found",
+            "gaps",
+            "confidence"
+          ]
+        },
+        {
+          "label": "synthesis",
+          "shape": "synthesis",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "summary",
+            "byInput"
+          ]
+        }
+      ],
+      "schema_valid": 0,
+      "fields_addressable": 0,
+      "branch_drop": {
+        "dropped": [],
+        "detectable": false
+      },
+      "evidence_replay": null
+    },
+    {
+      "arm": "A",
+      "variant": "01-fanout-consolidate",
+      "taskId": "01-fanout-consolidate",
+      "fault": false,
+      "rep": 3,
+      "task_pass": false,
+      "silent_wrong": true,
+      "located_failure": false,
+      "null_fed": false,
+      "tokens": 18000,
+      "retries": 0,
+      "status": "completed",
+      "stages": [
+        {
+          "label": "recon-taint",
+          "shape": "recon",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "found",
+            "gaps",
+            "confidence"
+          ]
+        },
+        {
+          "label": "recon-wrap",
+          "shape": "recon",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "found",
+            "gaps",
+            "confidence"
+          ]
+        },
+        {
+          "label": "recon-tokens",
+          "shape": "recon",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "found",
+            "gaps",
+            "confidence"
+          ]
+        },
+        {
+          "label": "synthesis",
+          "shape": "synthesis",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "summary",
+            "byInput"
+          ]
+        }
+      ],
+      "schema_valid": 0,
+      "fields_addressable": 0,
+      "branch_drop": {
+        "dropped": [
+          "wrap"
+        ],
+        "detectable": false
+      },
+      "evidence_replay": null
+    },
+    {
+      "arm": "A",
+      "variant": "01-fanout-consolidate",
+      "taskId": "01-fanout-consolidate",
+      "fault": false,
+      "rep": 4,
+      "task_pass": true,
+      "silent_wrong": false,
+      "located_failure": false,
+      "null_fed": false,
+      "tokens": 18000,
+      "retries": 0,
+      "status": "completed",
+      "stages": [
+        {
+          "label": "recon-taint",
+          "shape": "recon",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "found",
+            "gaps",
+            "confidence"
+          ]
+        },
+        {
+          "label": "recon-wrap",
+          "shape": "recon",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "found",
+            "gaps",
+            "confidence"
+          ]
+        },
+        {
+          "label": "recon-tokens",
+          "shape": "recon",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "found",
+            "gaps",
+            "confidence"
+          ]
+        },
+        {
+          "label": "synthesis",
+          "shape": "synthesis",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "summary",
+            "byInput"
+          ]
+        }
+      ],
+      "schema_valid": 0,
+      "fields_addressable": 0,
+      "branch_drop": {
+        "dropped": [],
+        "detectable": false
+      },
+      "evidence_replay": null
+    },
+    {
+      "arm": "A",
+      "variant": "01-fanout-consolidate",
+      "taskId": "01-fanout-consolidate",
+      "fault": false,
+      "rep": 5,
+      "task_pass": false,
+      "silent_wrong": true,
+      "located_failure": false,
+      "null_fed": false,
+      "tokens": 18000,
+      "retries": 0,
+      "status": "completed",
+      "stages": [
+        {
+          "label": "recon-taint",
+          "shape": "recon",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "found",
+            "gaps",
+            "confidence"
+          ]
+        },
+        {
+          "label": "recon-wrap",
+          "shape": "recon",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "found",
+            "gaps",
+            "confidence"
+          ]
+        },
+        {
+          "label": "recon-tokens",
+          "shape": "recon",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "found",
+            "gaps",
+            "confidence"
+          ]
+        },
+        {
+          "label": "synthesis",
+          "shape": "synthesis",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "summary",
+            "byInput"
+          ]
+        }
+      ],
+      "schema_valid": 0,
+      "fields_addressable": 0,
+      "branch_drop": {
+        "dropped": [
+          "wrap"
+        ],
+        "detectable": false
+      },
+      "evidence_replay": null
+    },
+    {
+      "arm": "A",
+      "variant": "02-sequential-chain",
+      "taskId": "02-sequential-chain",
+      "fault": false,
+      "rep": 1,
+      "task_pass": true,
+      "silent_wrong": false,
+      "located_failure": false,
+      "null_fed": false,
+      "tokens": 13900,
+      "retries": 0,
+      "status": "completed",
+      "stages": [
+        {
+          "label": "recon",
+          "shape": "recon",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "found",
+            "gaps",
+            "confidence"
+          ]
+        },
+        {
+          "label": "spec",
+          "shape": "spec",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "decisions",
+            "nonGoals",
+            "acceptance"
+          ]
+        },
+        {
+          "label": "implement",
+          "shape": "implement",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "changed",
+            "skipped",
+            "risks"
+          ]
+        }
+      ],
+      "schema_valid": 0,
+      "fields_addressable": 0,
+      "branch_drop": null,
+      "evidence_replay": null
+    },
+    {
+      "arm": "A",
+      "variant": "02-sequential-chain",
+      "taskId": "02-sequential-chain",
+      "fault": false,
+      "rep": 2,
+      "task_pass": true,
+      "silent_wrong": false,
+      "located_failure": false,
+      "null_fed": false,
+      "tokens": 13900,
+      "retries": 0,
+      "status": "completed",
+      "stages": [
+        {
+          "label": "recon",
+          "shape": "recon",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "found",
+            "gaps",
+            "confidence"
+          ]
+        },
+        {
+          "label": "spec",
+          "shape": "spec",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "decisions",
+            "nonGoals",
+            "acceptance"
+          ]
+        },
+        {
+          "label": "implement",
+          "shape": "implement",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "changed",
+            "skipped",
+            "risks"
+          ]
+        }
+      ],
+      "schema_valid": 0,
+      "fields_addressable": 0,
+      "branch_drop": null,
+      "evidence_replay": null
+    },
+    {
+      "arm": "A",
+      "variant": "02-sequential-chain",
+      "taskId": "02-sequential-chain",
+      "fault": false,
+      "rep": 3,
+      "task_pass": false,
+      "silent_wrong": true,
+      "located_failure": false,
+      "null_fed": false,
+      "tokens": 13900,
+      "retries": 0,
+      "status": "completed",
+      "stages": [
+        {
+          "label": "recon",
+          "shape": "recon",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "found",
+            "gaps",
+            "confidence"
+          ]
+        },
+        {
+          "label": "spec",
+          "shape": "spec",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "decisions",
+            "nonGoals",
+            "acceptance"
+          ]
+        },
+        {
+          "label": "implement",
+          "shape": "implement",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "changed",
+            "skipped",
+            "risks"
+          ]
+        }
+      ],
+      "schema_valid": 0,
+      "fields_addressable": 0,
+      "branch_drop": null,
+      "evidence_replay": null
+    },
+    {
+      "arm": "A",
+      "variant": "02-sequential-chain",
+      "taskId": "02-sequential-chain",
+      "fault": false,
+      "rep": 4,
+      "task_pass": true,
+      "silent_wrong": false,
+      "located_failure": false,
+      "null_fed": false,
+      "tokens": 13900,
+      "retries": 0,
+      "status": "completed",
+      "stages": [
+        {
+          "label": "recon",
+          "shape": "recon",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "found",
+            "gaps",
+            "confidence"
+          ]
+        },
+        {
+          "label": "spec",
+          "shape": "spec",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "decisions",
+            "nonGoals",
+            "acceptance"
+          ]
+        },
+        {
+          "label": "implement",
+          "shape": "implement",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "changed",
+            "skipped",
+            "risks"
+          ]
+        }
+      ],
+      "schema_valid": 0,
+      "fields_addressable": 0,
+      "branch_drop": null,
+      "evidence_replay": null
+    },
+    {
+      "arm": "A",
+      "variant": "02-sequential-chain",
+      "taskId": "02-sequential-chain",
+      "fault": false,
+      "rep": 5,
+      "task_pass": false,
+      "silent_wrong": true,
+      "located_failure": false,
+      "null_fed": false,
+      "tokens": 13900,
+      "retries": 0,
+      "status": "completed",
+      "stages": [
+        {
+          "label": "recon",
+          "shape": "recon",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "found",
+            "gaps",
+            "confidence"
+          ]
+        },
+        {
+          "label": "spec",
+          "shape": "spec",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "decisions",
+            "nonGoals",
+            "acceptance"
+          ]
+        },
+        {
+          "label": "implement",
+          "shape": "implement",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "changed",
+            "skipped",
+            "risks"
+          ]
+        }
+      ],
+      "schema_valid": 0,
+      "fields_addressable": 0,
+      "branch_drop": null,
+      "evidence_replay": null
+    },
+    {
+      "arm": "A",
+      "variant": "03-verify-heavy--fault",
+      "taskId": "03-verify-heavy",
+      "fault": true,
+      "rep": 1,
+      "task_pass": false,
+      "silent_wrong": true,
+      "located_failure": false,
+      "null_fed": true,
+      "tokens": 13000,
+      "retries": 0,
+      "status": "completed",
+      "stages": [
+        {
+          "label": "implement",
+          "shape": "implement",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "changed",
+            "skipped",
+            "risks"
+          ]
+        },
+        {
+          "label": "verify",
+          "shape": "verify",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "checks",
+            "verdict"
+          ]
+        },
+        {
+          "label": "review",
+          "shape": "review",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "findings",
+            "blocking"
+          ]
+        }
+      ],
+      "schema_valid": 0,
+      "fields_addressable": 0,
+      "branch_drop": null,
+      "evidence_replay": {
+        "measurable": false,
+        "why": "verify output is not structured — no cmd field to replay"
+      }
+    },
+    {
+      "arm": "A",
+      "variant": "03-verify-heavy--fault",
+      "taskId": "03-verify-heavy",
+      "fault": true,
+      "rep": 2,
+      "task_pass": false,
+      "silent_wrong": true,
+      "located_failure": false,
+      "null_fed": true,
+      "tokens": 13000,
+      "retries": 0,
+      "status": "completed",
+      "stages": [
+        {
+          "label": "implement",
+          "shape": "implement",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "changed",
+            "skipped",
+            "risks"
+          ]
+        },
+        {
+          "label": "verify",
+          "shape": "verify",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "checks",
+            "verdict"
+          ]
+        },
+        {
+          "label": "review",
+          "shape": "review",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "findings",
+            "blocking"
+          ]
+        }
+      ],
+      "schema_valid": 0,
+      "fields_addressable": 0,
+      "branch_drop": null,
+      "evidence_replay": {
+        "measurable": false,
+        "why": "verify output is not structured — no cmd field to replay"
+      }
+    },
+    {
+      "arm": "A",
+      "variant": "03-verify-heavy--fault",
+      "taskId": "03-verify-heavy",
+      "fault": true,
+      "rep": 3,
+      "task_pass": false,
+      "silent_wrong": true,
+      "located_failure": false,
+      "null_fed": true,
+      "tokens": 13000,
+      "retries": 0,
+      "status": "completed",
+      "stages": [
+        {
+          "label": "implement",
+          "shape": "implement",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "changed",
+            "skipped",
+            "risks"
+          ]
+        },
+        {
+          "label": "verify",
+          "shape": "verify",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "checks",
+            "verdict"
+          ]
+        },
+        {
+          "label": "review",
+          "shape": "review",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "findings",
+            "blocking"
+          ]
+        }
+      ],
+      "schema_valid": 0,
+      "fields_addressable": 0,
+      "branch_drop": null,
+      "evidence_replay": {
+        "measurable": false,
+        "why": "verify output is not structured — no cmd field to replay"
+      }
+    },
+    {
+      "arm": "A",
+      "variant": "03-verify-heavy--fault",
+      "taskId": "03-verify-heavy",
+      "fault": true,
+      "rep": 4,
+      "task_pass": false,
+      "silent_wrong": true,
+      "located_failure": false,
+      "null_fed": true,
+      "tokens": 13000,
+      "retries": 0,
+      "status": "completed",
+      "stages": [
+        {
+          "label": "implement",
+          "shape": "implement",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "changed",
+            "skipped",
+            "risks"
+          ]
+        },
+        {
+          "label": "verify",
+          "shape": "verify",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "checks",
+            "verdict"
+          ]
+        },
+        {
+          "label": "review",
+          "shape": "review",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "findings",
+            "blocking"
+          ]
+        }
+      ],
+      "schema_valid": 0,
+      "fields_addressable": 0,
+      "branch_drop": null,
+      "evidence_replay": {
+        "measurable": false,
+        "why": "verify output is not structured — no cmd field to replay"
+      }
+    },
+    {
+      "arm": "A",
+      "variant": "03-verify-heavy--fault",
+      "taskId": "03-verify-heavy",
+      "fault": true,
+      "rep": 5,
+      "task_pass": false,
+      "silent_wrong": true,
+      "located_failure": false,
+      "null_fed": true,
+      "tokens": 13000,
+      "retries": 0,
+      "status": "completed",
+      "stages": [
+        {
+          "label": "implement",
+          "shape": "implement",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "changed",
+            "skipped",
+            "risks"
+          ]
+        },
+        {
+          "label": "verify",
+          "shape": "verify",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "checks",
+            "verdict"
+          ]
+        },
+        {
+          "label": "review",
+          "shape": "review",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "findings",
+            "blocking"
+          ]
+        }
+      ],
+      "schema_valid": 0,
+      "fields_addressable": 0,
+      "branch_drop": null,
+      "evidence_replay": {
+        "measurable": false,
+        "why": "verify output is not structured — no cmd field to replay"
+      }
+    },
+    {
+      "arm": "A",
+      "variant": "03-verify-heavy",
+      "taskId": "03-verify-heavy",
+      "fault": false,
+      "rep": 1,
+      "task_pass": true,
+      "silent_wrong": false,
+      "located_failure": false,
+      "null_fed": false,
+      "tokens": 13000,
+      "retries": 0,
+      "status": "completed",
+      "stages": [
+        {
+          "label": "implement",
+          "shape": "implement",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "changed",
+            "skipped",
+            "risks"
+          ]
+        },
+        {
+          "label": "verify",
+          "shape": "verify",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "checks",
+            "verdict"
+          ]
+        },
+        {
+          "label": "review",
+          "shape": "review",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "findings",
+            "blocking"
+          ]
+        }
+      ],
+      "schema_valid": 0,
+      "fields_addressable": 0,
+      "branch_drop": null,
+      "evidence_replay": {
+        "measurable": false,
+        "why": "verify output is not structured — no cmd field to replay"
+      }
+    },
+    {
+      "arm": "A",
+      "variant": "03-verify-heavy",
+      "taskId": "03-verify-heavy",
+      "fault": false,
+      "rep": 2,
+      "task_pass": true,
+      "silent_wrong": false,
+      "located_failure": false,
+      "null_fed": false,
+      "tokens": 13000,
+      "retries": 0,
+      "status": "completed",
+      "stages": [
+        {
+          "label": "implement",
+          "shape": "implement",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "changed",
+            "skipped",
+            "risks"
+          ]
+        },
+        {
+          "label": "verify",
+          "shape": "verify",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "checks",
+            "verdict"
+          ]
+        },
+        {
+          "label": "review",
+          "shape": "review",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "findings",
+            "blocking"
+          ]
+        }
+      ],
+      "schema_valid": 0,
+      "fields_addressable": 0,
+      "branch_drop": null,
+      "evidence_replay": {
+        "measurable": false,
+        "why": "verify output is not structured — no cmd field to replay"
+      }
+    },
+    {
+      "arm": "A",
+      "variant": "03-verify-heavy",
+      "taskId": "03-verify-heavy",
+      "fault": false,
+      "rep": 3,
+      "task_pass": true,
+      "silent_wrong": false,
+      "located_failure": false,
+      "null_fed": false,
+      "tokens": 13000,
+      "retries": 0,
+      "status": "completed",
+      "stages": [
+        {
+          "label": "implement",
+          "shape": "implement",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "changed",
+            "skipped",
+            "risks"
+          ]
+        },
+        {
+          "label": "verify",
+          "shape": "verify",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "checks",
+            "verdict"
+          ]
+        },
+        {
+          "label": "review",
+          "shape": "review",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "findings",
+            "blocking"
+          ]
+        }
+      ],
+      "schema_valid": 0,
+      "fields_addressable": 0,
+      "branch_drop": null,
+      "evidence_replay": {
+        "measurable": false,
+        "why": "verify output is not structured — no cmd field to replay"
+      }
+    },
+    {
+      "arm": "A",
+      "variant": "03-verify-heavy",
+      "taskId": "03-verify-heavy",
+      "fault": false,
+      "rep": 4,
+      "task_pass": true,
+      "silent_wrong": false,
+      "located_failure": false,
+      "null_fed": false,
+      "tokens": 13000,
+      "retries": 0,
+      "status": "completed",
+      "stages": [
+        {
+          "label": "implement",
+          "shape": "implement",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "changed",
+            "skipped",
+            "risks"
+          ]
+        },
+        {
+          "label": "verify",
+          "shape": "verify",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "checks",
+            "verdict"
+          ]
+        },
+        {
+          "label": "review",
+          "shape": "review",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "findings",
+            "blocking"
+          ]
+        }
+      ],
+      "schema_valid": 0,
+      "fields_addressable": 0,
+      "branch_drop": null,
+      "evidence_replay": {
+        "measurable": false,
+        "why": "verify output is not structured — no cmd field to replay"
+      }
+    },
+    {
+      "arm": "A",
+      "variant": "03-verify-heavy",
+      "taskId": "03-verify-heavy",
+      "fault": false,
+      "rep": 5,
+      "task_pass": true,
+      "silent_wrong": false,
+      "located_failure": false,
+      "null_fed": false,
+      "tokens": 13000,
+      "retries": 0,
+      "status": "completed",
+      "stages": [
+        {
+          "label": "implement",
+          "shape": "implement",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "changed",
+            "skipped",
+            "risks"
+          ]
+        },
+        {
+          "label": "verify",
+          "shape": "verify",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "checks",
+            "verdict"
+          ]
+        },
+        {
+          "label": "review",
+          "shape": "review",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "findings",
+            "blocking"
+          ]
+        }
+      ],
+      "schema_valid": 0,
+      "fields_addressable": 0,
+      "branch_drop": null,
+      "evidence_replay": {
+        "measurable": false,
+        "why": "verify output is not structured — no cmd field to replay"
+      }
+    },
+    {
+      "arm": "B",
+      "variant": "01-fanout-consolidate--fault",
+      "taskId": "01-fanout-consolidate",
+      "fault": true,
+      "rep": 1,
+      "task_pass": false,
+      "silent_wrong": false,
+      "located_failure": true,
+      "null_fed": false,
+      "tokens": 12600,
+      "retries": 0,
+      "status": "failed",
+      "stages": [
+        {
+          "label": "recon-taint",
+          "shape": "recon",
+          "ran": true,
+          "structured": true,
+          "schemaValid": true,
+          "errors": [],
+          "missingRequired": []
+        },
+        {
+          "label": "recon-wrap",
+          "shape": "recon",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "found",
+            "gaps",
+            "confidence"
+          ]
+        },
+        {
+          "label": "recon-tokens",
+          "shape": "recon",
+          "ran": true,
+          "structured": true,
+          "schemaValid": true,
+          "errors": [],
+          "missingRequired": []
+        },
+        {
+          "label": "synthesis",
+          "shape": "synthesis",
+          "ran": false,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "summary",
+            "byInput"
+          ]
+        }
+      ],
+      "schema_valid": 0.5,
+      "fields_addressable": 0.5,
+      "branch_drop": {
+        "dropped": [
+          "taint",
+          "wrap",
+          "tokens"
+        ],
+        "detectable": true,
+        "why": "consolidator never ran"
+      },
+      "evidence_replay": null
+    },
+    {
+      "arm": "B",
+      "variant": "01-fanout-consolidate--fault",
+      "taskId": "01-fanout-consolidate",
+      "fault": true,
+      "rep": 2,
+      "task_pass": false,
+      "silent_wrong": false,
+      "located_failure": true,
+      "null_fed": false,
+      "tokens": 12600,
+      "retries": 0,
+      "status": "failed",
+      "stages": [
+        {
+          "label": "recon-taint",
+          "shape": "recon",
+          "ran": true,
+          "structured": true,
+          "schemaValid": true,
+          "errors": [],
+          "missingRequired": []
+        },
+        {
+          "label": "recon-wrap",
+          "shape": "recon",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "found",
+            "gaps",
+            "confidence"
+          ]
+        },
+        {
+          "label": "recon-tokens",
+          "shape": "recon",
+          "ran": true,
+          "structured": true,
+          "schemaValid": true,
+          "errors": [],
+          "missingRequired": []
+        },
+        {
+          "label": "synthesis",
+          "shape": "synthesis",
+          "ran": false,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "summary",
+            "byInput"
+          ]
+        }
+      ],
+      "schema_valid": 0.5,
+      "fields_addressable": 0.5,
+      "branch_drop": {
+        "dropped": [
+          "taint",
+          "wrap",
+          "tokens"
+        ],
+        "detectable": true,
+        "why": "consolidator never ran"
+      },
+      "evidence_replay": null
+    },
+    {
+      "arm": "B",
+      "variant": "01-fanout-consolidate--fault",
+      "taskId": "01-fanout-consolidate",
+      "fault": true,
+      "rep": 3,
+      "task_pass": false,
+      "silent_wrong": false,
+      "located_failure": true,
+      "null_fed": false,
+      "tokens": 12600,
+      "retries": 0,
+      "status": "failed",
+      "stages": [
+        {
+          "label": "recon-taint",
+          "shape": "recon",
+          "ran": true,
+          "structured": true,
+          "schemaValid": true,
+          "errors": [],
+          "missingRequired": []
+        },
+        {
+          "label": "recon-wrap",
+          "shape": "recon",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "found",
+            "gaps",
+            "confidence"
+          ]
+        },
+        {
+          "label": "recon-tokens",
+          "shape": "recon",
+          "ran": true,
+          "structured": true,
+          "schemaValid": true,
+          "errors": [],
+          "missingRequired": []
+        },
+        {
+          "label": "synthesis",
+          "shape": "synthesis",
+          "ran": false,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "summary",
+            "byInput"
+          ]
+        }
+      ],
+      "schema_valid": 0.5,
+      "fields_addressable": 0.5,
+      "branch_drop": {
+        "dropped": [
+          "taint",
+          "wrap",
+          "tokens"
+        ],
+        "detectable": true,
+        "why": "consolidator never ran"
+      },
+      "evidence_replay": null
+    },
+    {
+      "arm": "B",
+      "variant": "01-fanout-consolidate--fault",
+      "taskId": "01-fanout-consolidate",
+      "fault": true,
+      "rep": 4,
+      "task_pass": false,
+      "silent_wrong": false,
+      "located_failure": true,
+      "null_fed": false,
+      "tokens": 12600,
+      "retries": 0,
+      "status": "failed",
+      "stages": [
+        {
+          "label": "recon-taint",
+          "shape": "recon",
+          "ran": true,
+          "structured": true,
+          "schemaValid": true,
+          "errors": [],
+          "missingRequired": []
+        },
+        {
+          "label": "recon-wrap",
+          "shape": "recon",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "found",
+            "gaps",
+            "confidence"
+          ]
+        },
+        {
+          "label": "recon-tokens",
+          "shape": "recon",
+          "ran": true,
+          "structured": true,
+          "schemaValid": true,
+          "errors": [],
+          "missingRequired": []
+        },
+        {
+          "label": "synthesis",
+          "shape": "synthesis",
+          "ran": false,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "summary",
+            "byInput"
+          ]
+        }
+      ],
+      "schema_valid": 0.5,
+      "fields_addressable": 0.5,
+      "branch_drop": {
+        "dropped": [
+          "taint",
+          "wrap",
+          "tokens"
+        ],
+        "detectable": true,
+        "why": "consolidator never ran"
+      },
+      "evidence_replay": null
+    },
+    {
+      "arm": "B",
+      "variant": "01-fanout-consolidate--fault",
+      "taskId": "01-fanout-consolidate",
+      "fault": true,
+      "rep": 5,
+      "task_pass": false,
+      "silent_wrong": false,
+      "located_failure": true,
+      "null_fed": false,
+      "tokens": 12600,
+      "retries": 0,
+      "status": "failed",
+      "stages": [
+        {
+          "label": "recon-taint",
+          "shape": "recon",
+          "ran": true,
+          "structured": true,
+          "schemaValid": true,
+          "errors": [],
+          "missingRequired": []
+        },
+        {
+          "label": "recon-wrap",
+          "shape": "recon",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "found",
+            "gaps",
+            "confidence"
+          ]
+        },
+        {
+          "label": "recon-tokens",
+          "shape": "recon",
+          "ran": true,
+          "structured": true,
+          "schemaValid": true,
+          "errors": [],
+          "missingRequired": []
+        },
+        {
+          "label": "synthesis",
+          "shape": "synthesis",
+          "ran": false,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "summary",
+            "byInput"
+          ]
+        }
+      ],
+      "schema_valid": 0.5,
+      "fields_addressable": 0.5,
+      "branch_drop": {
+        "dropped": [
+          "taint",
+          "wrap",
+          "tokens"
+        ],
+        "detectable": true,
+        "why": "consolidator never ran"
+      },
+      "evidence_replay": null
+    },
+    {
+      "arm": "B",
+      "variant": "01-fanout-consolidate",
+      "taskId": "01-fanout-consolidate",
+      "fault": false,
+      "rep": 1,
+      "task_pass": true,
+      "silent_wrong": false,
+      "located_failure": false,
+      "null_fed": false,
+      "tokens": 18700,
+      "retries": 0,
+      "status": "completed",
+      "stages": [
+        {
+          "label": "recon-taint",
+          "shape": "recon",
+          "ran": true,
+          "structured": true,
+          "schemaValid": true,
+          "errors": [],
+          "missingRequired": []
+        },
+        {
+          "label": "recon-wrap",
+          "shape": "recon",
+          "ran": true,
+          "structured": true,
+          "schemaValid": true,
+          "errors": [],
+          "missingRequired": []
+        },
+        {
+          "label": "recon-tokens",
+          "shape": "recon",
+          "ran": true,
+          "structured": true,
+          "schemaValid": true,
+          "errors": [],
+          "missingRequired": []
+        },
+        {
+          "label": "synthesis",
+          "shape": "synthesis",
+          "ran": true,
+          "structured": true,
+          "schemaValid": true,
+          "errors": [],
+          "missingRequired": []
+        }
+      ],
+      "schema_valid": 1,
+      "fields_addressable": 1,
+      "branch_drop": {
+        "dropped": [],
+        "detectable": true
+      },
+      "evidence_replay": null
+    },
+    {
+      "arm": "B",
+      "variant": "01-fanout-consolidate",
+      "taskId": "01-fanout-consolidate",
+      "fault": false,
+      "rep": 2,
+      "task_pass": true,
+      "silent_wrong": false,
+      "located_failure": false,
+      "null_fed": false,
+      "tokens": 18700,
+      "retries": 0,
+      "status": "completed",
+      "stages": [
+        {
+          "label": "recon-taint",
+          "shape": "recon",
+          "ran": true,
+          "structured": true,
+          "schemaValid": true,
+          "errors": [],
+          "missingRequired": []
+        },
+        {
+          "label": "recon-wrap",
+          "shape": "recon",
+          "ran": true,
+          "structured": true,
+          "schemaValid": true,
+          "errors": [],
+          "missingRequired": []
+        },
+        {
+          "label": "recon-tokens",
+          "shape": "recon",
+          "ran": true,
+          "structured": true,
+          "schemaValid": true,
+          "errors": [],
+          "missingRequired": []
+        },
+        {
+          "label": "synthesis",
+          "shape": "synthesis",
+          "ran": true,
+          "structured": true,
+          "schemaValid": true,
+          "errors": [],
+          "missingRequired": []
+        }
+      ],
+      "schema_valid": 1,
+      "fields_addressable": 1,
+      "branch_drop": {
+        "dropped": [],
+        "detectable": true
+      },
+      "evidence_replay": null
+    },
+    {
+      "arm": "B",
+      "variant": "01-fanout-consolidate",
+      "taskId": "01-fanout-consolidate",
+      "fault": false,
+      "rep": 3,
+      "task_pass": true,
+      "silent_wrong": false,
+      "located_failure": false,
+      "null_fed": false,
+      "tokens": 18700,
+      "retries": 0,
+      "status": "completed",
+      "stages": [
+        {
+          "label": "recon-taint",
+          "shape": "recon",
+          "ran": true,
+          "structured": true,
+          "schemaValid": true,
+          "errors": [],
+          "missingRequired": []
+        },
+        {
+          "label": "recon-wrap",
+          "shape": "recon",
+          "ran": true,
+          "structured": true,
+          "schemaValid": true,
+          "errors": [],
+          "missingRequired": []
+        },
+        {
+          "label": "recon-tokens",
+          "shape": "recon",
+          "ran": true,
+          "structured": true,
+          "schemaValid": true,
+          "errors": [],
+          "missingRequired": []
+        },
+        {
+          "label": "synthesis",
+          "shape": "synthesis",
+          "ran": true,
+          "structured": true,
+          "schemaValid": true,
+          "errors": [],
+          "missingRequired": []
+        }
+      ],
+      "schema_valid": 1,
+      "fields_addressable": 1,
+      "branch_drop": {
+        "dropped": [],
+        "detectable": true
+      },
+      "evidence_replay": null
+    },
+    {
+      "arm": "B",
+      "variant": "01-fanout-consolidate",
+      "taskId": "01-fanout-consolidate",
+      "fault": false,
+      "rep": 4,
+      "task_pass": true,
+      "silent_wrong": false,
+      "located_failure": false,
+      "null_fed": false,
+      "tokens": 18700,
+      "retries": 0,
+      "status": "completed",
+      "stages": [
+        {
+          "label": "recon-taint",
+          "shape": "recon",
+          "ran": true,
+          "structured": true,
+          "schemaValid": true,
+          "errors": [],
+          "missingRequired": []
+        },
+        {
+          "label": "recon-wrap",
+          "shape": "recon",
+          "ran": true,
+          "structured": true,
+          "schemaValid": true,
+          "errors": [],
+          "missingRequired": []
+        },
+        {
+          "label": "recon-tokens",
+          "shape": "recon",
+          "ran": true,
+          "structured": true,
+          "schemaValid": true,
+          "errors": [],
+          "missingRequired": []
+        },
+        {
+          "label": "synthesis",
+          "shape": "synthesis",
+          "ran": true,
+          "structured": true,
+          "schemaValid": true,
+          "errors": [],
+          "missingRequired": []
+        }
+      ],
+      "schema_valid": 1,
+      "fields_addressable": 1,
+      "branch_drop": {
+        "dropped": [],
+        "detectable": true
+      },
+      "evidence_replay": null
+    },
+    {
+      "arm": "B",
+      "variant": "01-fanout-consolidate",
+      "taskId": "01-fanout-consolidate",
+      "fault": false,
+      "rep": 5,
+      "task_pass": true,
+      "silent_wrong": false,
+      "located_failure": false,
+      "null_fed": false,
+      "tokens": 18700,
+      "retries": 0,
+      "status": "completed",
+      "stages": [
+        {
+          "label": "recon-taint",
+          "shape": "recon",
+          "ran": true,
+          "structured": true,
+          "schemaValid": true,
+          "errors": [],
+          "missingRequired": []
+        },
+        {
+          "label": "recon-wrap",
+          "shape": "recon",
+          "ran": true,
+          "structured": true,
+          "schemaValid": true,
+          "errors": [],
+          "missingRequired": []
+        },
+        {
+          "label": "recon-tokens",
+          "shape": "recon",
+          "ran": true,
+          "structured": true,
+          "schemaValid": true,
+          "errors": [],
+          "missingRequired": []
+        },
+        {
+          "label": "synthesis",
+          "shape": "synthesis",
+          "ran": true,
+          "structured": true,
+          "schemaValid": true,
+          "errors": [],
+          "missingRequired": []
+        }
+      ],
+      "schema_valid": 1,
+      "fields_addressable": 1,
+      "branch_drop": {
+        "dropped": [],
+        "detectable": true
+      },
+      "evidence_replay": null
+    },
+    {
+      "arm": "B",
+      "variant": "02-sequential-chain",
+      "taskId": "02-sequential-chain",
+      "fault": false,
+      "rep": 1,
+      "task_pass": true,
+      "silent_wrong": false,
+      "located_failure": false,
+      "null_fed": false,
+      "tokens": 14200,
+      "retries": 0,
+      "status": "completed",
+      "stages": [
+        {
+          "label": "recon",
+          "shape": "recon",
+          "ran": true,
+          "structured": true,
+          "schemaValid": true,
+          "errors": [],
+          "missingRequired": []
+        },
+        {
+          "label": "spec",
+          "shape": "spec",
+          "ran": true,
+          "structured": true,
+          "schemaValid": true,
+          "errors": [],
+          "missingRequired": []
+        },
+        {
+          "label": "implement",
+          "shape": "implement",
+          "ran": true,
+          "structured": true,
+          "schemaValid": true,
+          "errors": [],
+          "missingRequired": []
+        }
+      ],
+      "schema_valid": 1,
+      "fields_addressable": 1,
+      "branch_drop": null,
+      "evidence_replay": null
+    },
+    {
+      "arm": "B",
+      "variant": "02-sequential-chain",
+      "taskId": "02-sequential-chain",
+      "fault": false,
+      "rep": 2,
+      "task_pass": true,
+      "silent_wrong": false,
+      "located_failure": false,
+      "null_fed": false,
+      "tokens": 14200,
+      "retries": 0,
+      "status": "completed",
+      "stages": [
+        {
+          "label": "recon",
+          "shape": "recon",
+          "ran": true,
+          "structured": true,
+          "schemaValid": true,
+          "errors": [],
+          "missingRequired": []
+        },
+        {
+          "label": "spec",
+          "shape": "spec",
+          "ran": true,
+          "structured": true,
+          "schemaValid": true,
+          "errors": [],
+          "missingRequired": []
+        },
+        {
+          "label": "implement",
+          "shape": "implement",
+          "ran": true,
+          "structured": true,
+          "schemaValid": true,
+          "errors": [],
+          "missingRequired": []
+        }
+      ],
+      "schema_valid": 1,
+      "fields_addressable": 1,
+      "branch_drop": null,
+      "evidence_replay": null
+    },
+    {
+      "arm": "B",
+      "variant": "02-sequential-chain",
+      "taskId": "02-sequential-chain",
+      "fault": false,
+      "rep": 3,
+      "task_pass": true,
+      "silent_wrong": false,
+      "located_failure": false,
+      "null_fed": false,
+      "tokens": 14200,
+      "retries": 0,
+      "status": "completed",
+      "stages": [
+        {
+          "label": "recon",
+          "shape": "recon",
+          "ran": true,
+          "structured": true,
+          "schemaValid": true,
+          "errors": [],
+          "missingRequired": []
+        },
+        {
+          "label": "spec",
+          "shape": "spec",
+          "ran": true,
+          "structured": true,
+          "schemaValid": true,
+          "errors": [],
+          "missingRequired": []
+        },
+        {
+          "label": "implement",
+          "shape": "implement",
+          "ran": true,
+          "structured": true,
+          "schemaValid": true,
+          "errors": [],
+          "missingRequired": []
+        }
+      ],
+      "schema_valid": 1,
+      "fields_addressable": 1,
+      "branch_drop": null,
+      "evidence_replay": null
+    },
+    {
+      "arm": "B",
+      "variant": "02-sequential-chain",
+      "taskId": "02-sequential-chain",
+      "fault": false,
+      "rep": 4,
+      "task_pass": true,
+      "silent_wrong": false,
+      "located_failure": false,
+      "null_fed": false,
+      "tokens": 14200,
+      "retries": 0,
+      "status": "completed",
+      "stages": [
+        {
+          "label": "recon",
+          "shape": "recon",
+          "ran": true,
+          "structured": true,
+          "schemaValid": true,
+          "errors": [],
+          "missingRequired": []
+        },
+        {
+          "label": "spec",
+          "shape": "spec",
+          "ran": true,
+          "structured": true,
+          "schemaValid": true,
+          "errors": [],
+          "missingRequired": []
+        },
+        {
+          "label": "implement",
+          "shape": "implement",
+          "ran": true,
+          "structured": true,
+          "schemaValid": true,
+          "errors": [],
+          "missingRequired": []
+        }
+      ],
+      "schema_valid": 1,
+      "fields_addressable": 1,
+      "branch_drop": null,
+      "evidence_replay": null
+    },
+    {
+      "arm": "B",
+      "variant": "02-sequential-chain",
+      "taskId": "02-sequential-chain",
+      "fault": false,
+      "rep": 5,
+      "task_pass": true,
+      "silent_wrong": false,
+      "located_failure": false,
+      "null_fed": false,
+      "tokens": 14200,
+      "retries": 0,
+      "status": "completed",
+      "stages": [
+        {
+          "label": "recon",
+          "shape": "recon",
+          "ran": true,
+          "structured": true,
+          "schemaValid": true,
+          "errors": [],
+          "missingRequired": []
+        },
+        {
+          "label": "spec",
+          "shape": "spec",
+          "ran": true,
+          "structured": true,
+          "schemaValid": true,
+          "errors": [],
+          "missingRequired": []
+        },
+        {
+          "label": "implement",
+          "shape": "implement",
+          "ran": true,
+          "structured": true,
+          "schemaValid": true,
+          "errors": [],
+          "missingRequired": []
+        }
+      ],
+      "schema_valid": 1,
+      "fields_addressable": 1,
+      "branch_drop": null,
+      "evidence_replay": null
+    },
+    {
+      "arm": "B",
+      "variant": "03-verify-heavy--fault",
+      "taskId": "03-verify-heavy",
+      "fault": true,
+      "rep": 1,
+      "task_pass": false,
+      "silent_wrong": false,
+      "located_failure": true,
+      "null_fed": false,
+      "tokens": 3700,
+      "retries": 0,
+      "status": "failed",
+      "stages": [
+        {
+          "label": "implement",
+          "shape": "implement",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "changed",
+            "skipped",
+            "risks"
+          ]
+        },
+        {
+          "label": "verify",
+          "shape": "verify",
+          "ran": false,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "checks",
+            "verdict"
+          ]
+        },
+        {
+          "label": "review",
+          "shape": "review",
+          "ran": false,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "findings",
+            "blocking"
+          ]
+        }
+      ],
+      "schema_valid": 0,
+      "fields_addressable": 0,
+      "branch_drop": null,
+      "evidence_replay": {
+        "measurable": false,
+        "why": "verify output is not structured — no cmd field to replay"
+      }
+    },
+    {
+      "arm": "B",
+      "variant": "03-verify-heavy--fault",
+      "taskId": "03-verify-heavy",
+      "fault": true,
+      "rep": 2,
+      "task_pass": false,
+      "silent_wrong": false,
+      "located_failure": true,
+      "null_fed": false,
+      "tokens": 3700,
+      "retries": 0,
+      "status": "failed",
+      "stages": [
+        {
+          "label": "implement",
+          "shape": "implement",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "changed",
+            "skipped",
+            "risks"
+          ]
+        },
+        {
+          "label": "verify",
+          "shape": "verify",
+          "ran": false,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "checks",
+            "verdict"
+          ]
+        },
+        {
+          "label": "review",
+          "shape": "review",
+          "ran": false,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "findings",
+            "blocking"
+          ]
+        }
+      ],
+      "schema_valid": 0,
+      "fields_addressable": 0,
+      "branch_drop": null,
+      "evidence_replay": {
+        "measurable": false,
+        "why": "verify output is not structured — no cmd field to replay"
+      }
+    },
+    {
+      "arm": "B",
+      "variant": "03-verify-heavy--fault",
+      "taskId": "03-verify-heavy",
+      "fault": true,
+      "rep": 3,
+      "task_pass": false,
+      "silent_wrong": false,
+      "located_failure": true,
+      "null_fed": false,
+      "tokens": 3700,
+      "retries": 0,
+      "status": "failed",
+      "stages": [
+        {
+          "label": "implement",
+          "shape": "implement",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "changed",
+            "skipped",
+            "risks"
+          ]
+        },
+        {
+          "label": "verify",
+          "shape": "verify",
+          "ran": false,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "checks",
+            "verdict"
+          ]
+        },
+        {
+          "label": "review",
+          "shape": "review",
+          "ran": false,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "findings",
+            "blocking"
+          ]
+        }
+      ],
+      "schema_valid": 0,
+      "fields_addressable": 0,
+      "branch_drop": null,
+      "evidence_replay": {
+        "measurable": false,
+        "why": "verify output is not structured — no cmd field to replay"
+      }
+    },
+    {
+      "arm": "B",
+      "variant": "03-verify-heavy--fault",
+      "taskId": "03-verify-heavy",
+      "fault": true,
+      "rep": 4,
+      "task_pass": false,
+      "silent_wrong": false,
+      "located_failure": true,
+      "null_fed": false,
+      "tokens": 3700,
+      "retries": 0,
+      "status": "failed",
+      "stages": [
+        {
+          "label": "implement",
+          "shape": "implement",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "changed",
+            "skipped",
+            "risks"
+          ]
+        },
+        {
+          "label": "verify",
+          "shape": "verify",
+          "ran": false,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "checks",
+            "verdict"
+          ]
+        },
+        {
+          "label": "review",
+          "shape": "review",
+          "ran": false,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "findings",
+            "blocking"
+          ]
+        }
+      ],
+      "schema_valid": 0,
+      "fields_addressable": 0,
+      "branch_drop": null,
+      "evidence_replay": {
+        "measurable": false,
+        "why": "verify output is not structured — no cmd field to replay"
+      }
+    },
+    {
+      "arm": "B",
+      "variant": "03-verify-heavy--fault",
+      "taskId": "03-verify-heavy",
+      "fault": true,
+      "rep": 5,
+      "task_pass": false,
+      "silent_wrong": false,
+      "located_failure": true,
+      "null_fed": false,
+      "tokens": 3700,
+      "retries": 0,
+      "status": "failed",
+      "stages": [
+        {
+          "label": "implement",
+          "shape": "implement",
+          "ran": true,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "changed",
+            "skipped",
+            "risks"
+          ]
+        },
+        {
+          "label": "verify",
+          "shape": "verify",
+          "ran": false,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "checks",
+            "verdict"
+          ]
+        },
+        {
+          "label": "review",
+          "shape": "review",
+          "ran": false,
+          "structured": false,
+          "schemaValid": false,
+          "errors": [
+            "not structured"
+          ],
+          "missingRequired": [
+            "findings",
+            "blocking"
+          ]
+        }
+      ],
+      "schema_valid": 0,
+      "fields_addressable": 0,
+      "branch_drop": null,
+      "evidence_replay": {
+        "measurable": false,
+        "why": "verify output is not structured — no cmd field to replay"
+      }
+    },
+    {
+      "arm": "B",
+      "variant": "03-verify-heavy",
+      "taskId": "03-verify-heavy",
+      "fault": false,
+      "rep": 1,
+      "task_pass": true,
+      "silent_wrong": false,
+      "located_failure": false,
+      "null_fed": false,
+      "tokens": 13300,
+      "retries": 0,
+      "status": "completed",
+      "stages": [
+        {
+          "label": "implement",
+          "shape": "implement",
+          "ran": true,
+          "structured": true,
+          "schemaValid": true,
+          "errors": [],
+          "missingRequired": []
+        },
+        {
+          "label": "verify",
+          "shape": "verify",
+          "ran": true,
+          "structured": true,
+          "schemaValid": true,
+          "errors": [],
+          "missingRequired": []
+        },
+        {
+          "label": "review",
+          "shape": "review",
+          "ran": true,
+          "structured": true,
+          "schemaValid": true,
+          "errors": [],
+          "missingRequired": []
+        }
+      ],
+      "schema_valid": 1,
+      "fields_addressable": 1,
+      "branch_drop": null,
+      "evidence_replay": {
+        "measurable": true,
+        "cleanCheckout": false,
+        "mismatch": false,
+        "results": [
+          {
+            "cmd": "node schemas/check.mjs",
+            "realExit": 0,
+            "reported": true,
+            "verdict": "match",
+            "match": true
+          }
+        ]
+      }
+    },
+    {
+      "arm": "B",
+      "variant": "03-verify-heavy",
+      "taskId": "03-verify-heavy",
+      "fault": false,
+      "rep": 2,
+      "task_pass": true,
+      "silent_wrong": false,
+      "located_failure": false,
+      "null_fed": false,
+      "tokens": 13300,
+      "retries": 0,
+      "status": "completed",
+      "stages": [
+        {
+          "label": "implement",
+          "shape": "implement",
+          "ran": true,
+          "structured": true,
+          "schemaValid": true,
+          "errors": [],
+          "missingRequired": []
+        },
+        {
+          "label": "verify",
+          "shape": "verify",
+          "ran": true,
+          "structured": true,
+          "schemaValid": true,
+          "errors": [],
+          "missingRequired": []
+        },
+        {
+          "label": "review",
+          "shape": "review",
+          "ran": true,
+          "structured": true,
+          "schemaValid": true,
+          "errors": [],
+          "missingRequired": []
+        }
+      ],
+      "schema_valid": 1,
+      "fields_addressable": 1,
+      "branch_drop": null,
+      "evidence_replay": {
+        "measurable": true,
+        "cleanCheckout": false,
+        "mismatch": false,
+        "results": [
+          {
+            "cmd": "node schemas/check.mjs",
+            "realExit": 0,
+            "reported": true,
+            "verdict": "match",
+            "match": true
+          }
+        ]
+      }
+    },
+    {
+      "arm": "B",
+      "variant": "03-verify-heavy",
+      "taskId": "03-verify-heavy",
+      "fault": false,
+      "rep": 3,
+      "task_pass": true,
+      "silent_wrong": false,
+      "located_failure": false,
+      "null_fed": false,
+      "tokens": 13300,
+      "retries": 0,
+      "status": "completed",
+      "stages": [
+        {
+          "label": "implement",
+          "shape": "implement",
+          "ran": true,
+          "structured": true,
+          "schemaValid": true,
+          "errors": [],
+          "missingRequired": []
+        },
+        {
+          "label": "verify",
+          "shape": "verify",
+          "ran": true,
+          "structured": true,
+          "schemaValid": true,
+          "errors": [],
+          "missingRequired": []
+        },
+        {
+          "label": "review",
+          "shape": "review",
+          "ran": true,
+          "structured": true,
+          "schemaValid": true,
+          "errors": [],
+          "missingRequired": []
+        }
+      ],
+      "schema_valid": 1,
+      "fields_addressable": 1,
+      "branch_drop": null,
+      "evidence_replay": {
+        "measurable": true,
+        "cleanCheckout": false,
+        "mismatch": false,
+        "results": [
+          {
+            "cmd": "node schemas/check.mjs",
+            "realExit": 0,
+            "reported": true,
+            "verdict": "match",
+            "match": true
+          }
+        ]
+      }
+    },
+    {
+      "arm": "B",
+      "variant": "03-verify-heavy",
+      "taskId": "03-verify-heavy",
+      "fault": false,
+      "rep": 4,
+      "task_pass": true,
+      "silent_wrong": false,
+      "located_failure": false,
+      "null_fed": false,
+      "tokens": 13300,
+      "retries": 0,
+      "status": "completed",
+      "stages": [
+        {
+          "label": "implement",
+          "shape": "implement",
+          "ran": true,
+          "structured": true,
+          "schemaValid": true,
+          "errors": [],
+          "missingRequired": []
+        },
+        {
+          "label": "verify",
+          "shape": "verify",
+          "ran": true,
+          "structured": true,
+          "schemaValid": true,
+          "errors": [],
+          "missingRequired": []
+        },
+        {
+          "label": "review",
+          "shape": "review",
+          "ran": true,
+          "structured": true,
+          "schemaValid": true,
+          "errors": [],
+          "missingRequired": []
+        }
+      ],
+      "schema_valid": 1,
+      "fields_addressable": 1,
+      "branch_drop": null,
+      "evidence_replay": {
+        "measurable": true,
+        "cleanCheckout": false,
+        "mismatch": true,
+        "results": [
+          {
+            "cmd": "node schemas/check.mjs",
+            "realExit": 0,
+            "reported": true,
+            "verdict": "match",
+            "match": true
+          },
+          {
+            "cmd": "node -e \"process.exit(1)\"",
+            "realExit": 1,
+            "reported": true,
+            "verdict": "mismatch",
+            "match": false
+          }
+        ]
+      }
+    },
+    {
+      "arm": "B",
+      "variant": "03-verify-heavy",
+      "taskId": "03-verify-heavy",
+      "fault": false,
+      "rep": 5,
+      "task_pass": true,
+      "silent_wrong": false,
+      "located_failure": false,
+      "null_fed": false,
+      "tokens": 13300,
+      "retries": 0,
+      "status": "completed",
+      "stages": [
+        {
+          "label": "implement",
+          "shape": "implement",
+          "ran": true,
+          "structured": true,
+          "schemaValid": true,
+          "errors": [],
+          "missingRequired": []
+        },
+        {
+          "label": "verify",
+          "shape": "verify",
+          "ran": true,
+          "structured": true,
+          "schemaValid": true,
+          "errors": [],
+          "missingRequired": []
+        },
+        {
+          "label": "review",
+          "shape": "review",
+          "ran": true,
+          "structured": true,
+          "schemaValid": true,
+          "errors": [],
+          "missingRequired": []
+        }
+      ],
+      "schema_valid": 1,
+      "fields_addressable": 1,
+      "branch_drop": null,
+      "evidence_replay": {
+        "measurable": true,
+        "cleanCheckout": false,
+        "mismatch": false,
+        "results": [
+          {
+            "cmd": "node schemas/check.mjs",
+            "realExit": 0,
+            "reported": true,
+            "verdict": "match",
+            "match": true
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "synthetic": true,
+  "recordedBy": "eval/fixtures/record.mjs",
+  "scenario": "drop",
+  "scriptSha256": "4b9695ee06711a6e9dac2429e2285886de1b601005d2bd034b0436a4c18379a1",
+  "runId": "A-03-verify-heavy-rep3",
+  "workflowName": "03-verify-heavy [A]",
+  "args": {
+    "arm": "A",
+    "variant": "03-verify-heavy",
+    "rep": 3,
+    "seededFault": false,
+    "faultStage": null
+  },
+  "status": "completed",
+  "agents": [
+    {
+      "id": "implement-1",
+      "callId": "c-implement",
+      "label": "implement",
+      "phase": "implement",
+      "prompt": "Report the change",
+      "status": "done",
+      "model": "frozen/fixture",
+      "tokens": 3600,
+      "tokenUsage": {
+        "input": 2520,
+        "output": 1080
+      },
+      "result": "Made verify.evidence required with minLength 1 in shapes/verify.json.",
+      "resultPreview": "Made verify.evidence required with minLength 1 in shapes/verify.json.",
+      "startedAt": "2026-01-01T00:00:00.000Z",
+      "endedAt": "2026-01-01T00:01:00.000Z"
+    },
+    {
+      "id": "verify-1",
+      "callId": "c-verify",
+      "label": "verify",
+      "phase": "verify",
+      "prompt": "Verify this change...\n\nMade verify.evidence required...",
+      "status": "done",
+      "model": "frozen/fixture",
+      "tokens": 5100,
+      "tokenUsage": {
+        "input": 3570,
+        "output": 1530
+      },
+      "result": "I ran node schemas/check.mjs and it exited 0 with 12/12 ok.",
+      "resultPreview": "I ran node schemas/check.mjs and it exited 0 with 12/12 ok.",
+      "startedAt": "2026-01-01T00:00:00.000Z",
+      "endedAt": "2026-01-01T00:01:00.000Z"
+    },
+    {
+      "id": "review-1",
+      "callId": "c-review",
+      "label": "review",
+      "phase": "review",
+      "prompt": "Review this verification...",
+      "status": "done",
+      "model": "frozen/fixture",
+      "tokens": 4300,
+      "tokenUsage": {
+        "input": 3010,
+        "output": 1290
+      },
+      "result": "One minor finding in shapes/verify.json; not blocking.",
+      "resultPreview": "One minor finding in shapes/verify.json; not blocking.",
+      "startedAt": "2026-01-01T00:00:00.000Z",
+      "endedAt": "2026-01-01T00:01:00.000Z"
+    }
+  ],
+  "logs": [],
+  "phases": [
+    "implement",
+    "verify",
+    "review"
+  ],
+  "result": "One minor finding in shapes/verify.json; not blocking.",
+  "tokenUsage": {},
+  "startedAt": "2026-01-01T00:00:00.000Z",
+  "completedAt": "2026-01-01T00:05:00.000Z"
+}

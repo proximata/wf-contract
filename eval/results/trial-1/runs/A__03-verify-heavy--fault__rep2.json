@@ -1,0 +1,81 @@
+{
+  "synthetic": true,
+  "recordedBy": "eval/fixtures/record.mjs",
+  "scenario": "nullfed",
+  "scriptSha256": "4b9695ee06711a6e9dac2429e2285886de1b601005d2bd034b0436a4c18379a1",
+  "runId": "A-03-verify-heavy--fault-rep2",
+  "workflowName": "03-verify-heavy--fault [A]",
+  "args": {
+    "arm": "A",
+    "variant": "03-verify-heavy--fault",
+    "rep": 2,
+    "seededFault": true,
+    "faultStage": "implement"
+  },
+  "status": "completed",
+  "agents": [
+    {
+      "id": "implement-1",
+      "callId": "c-implement",
+      "label": "implement",
+      "phase": "implement",
+      "prompt": "Report the change",
+      "status": "failed",
+      "model": "frozen/fixture",
+      "tokens": 3600,
+      "tokenUsage": {
+        "input": 2520,
+        "output": 1080
+      },
+      "resultPreview": "undefined",
+      "startedAt": "2026-01-01T00:00:00.000Z",
+      "endedAt": "2026-01-01T00:01:00.000Z"
+    },
+    {
+      "id": "verify-1",
+      "callId": "c-verify",
+      "label": "verify",
+      "phase": "verify",
+      "prompt": "Verify this change by running real commands.\n\nnull\n",
+      "status": "done",
+      "model": "frozen/fixture",
+      "tokens": 5100,
+      "tokenUsage": {
+        "input": 3570,
+        "output": 1530
+      },
+      "result": "I verified the change and everything looks correct.",
+      "resultPreview": "I verified the change and everything looks correct.",
+      "startedAt": "2026-01-01T00:00:00.000Z",
+      "endedAt": "2026-01-01T00:01:00.000Z"
+    },
+    {
+      "id": "review-1",
+      "callId": "c-review",
+      "label": "review",
+      "phase": "review",
+      "prompt": "Review this verification...",
+      "status": "done",
+      "model": "frozen/fixture",
+      "tokens": 4300,
+      "tokenUsage": {
+        "input": 3010,
+        "output": 1290
+      },
+      "result": "Looks fine to me.",
+      "resultPreview": "Looks fine to me.",
+      "startedAt": "2026-01-01T00:00:00.000Z",
+      "endedAt": "2026-01-01T00:01:00.000Z"
+    }
+  ],
+  "logs": [],
+  "phases": [
+    "implement",
+    "verify",
+    "review"
+  ],
+  "result": "Looks fine to me.",
+  "tokenUsage": {},
+  "startedAt": "2026-01-01T00:00:00.000Z",
+  "completedAt": "2026-01-01T00:05:00.000Z"
+}

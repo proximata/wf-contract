@@ -1,0 +1,46 @@
+{
+  "synthetic": true,
+  "recordedBy": "eval/fixtures/record.mjs",
+  "scenario": "schemafail",
+  "scriptSha256": "761bae07cd1d59f9d0202cb2ecbdf66ae88b2dccf0e6cb60c47d4a7f9213018e",
+  "runId": "B-03-verify-heavy--fault-rep2",
+  "workflowName": "03-verify-heavy--fault [B]",
+  "args": {
+    "arm": "B",
+    "variant": "03-verify-heavy--fault",
+    "rep": 2,
+    "seededFault": true,
+    "faultStage": "implement"
+  },
+  "status": "failed",
+  "agents": [
+    {
+      "id": "implement-1",
+      "callId": "c-implement",
+      "label": "implement",
+      "phase": "implement",
+      "prompt": "Report the change",
+      "status": "failed",
+      "model": "frozen/fixture",
+      "tokens": 3700,
+      "tokenUsage": {
+        "input": 2590,
+        "output": 1110
+      },
+      "result": "I was unable to determine what changed.",
+      "resultPreview": "I was unable to determine what changed.",
+      "startedAt": "2026-01-01T00:00:00.000Z",
+      "endedAt": "2026-01-01T00:01:00.000Z"
+    }
+  ],
+  "logs": [
+    "agent implement: SCHEMA_NONCOMPLIANCE — output did not satisfy SHAPES.implement (non-recoverable)"
+  ],
+  "phases": [
+    "implement"
+  ],
+  "result": "I was unable to determine what changed.",
+  "tokenUsage": {},
+  "startedAt": "2026-01-01T00:00:00.000Z",
+  "completedAt": "2026-01-01T00:05:00.000Z"
+}

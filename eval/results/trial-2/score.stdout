@@ -1,0 +1,38 @@
+# wf-contract A/B eval — report
+
+> **HARNESS SELF-TEST — SYNTHETIC FIXTURES. NOT EVIDENCE.**
+> Every falsifier below reads `not-evaluable`. These fixtures exercise the scorer; they do not
+> measure any model. A real result requires `node eval/run.mjs --live`.
+
+verdict      self-test only
+runs         50 · pairs 25
+floor        wider than ~20pp — design floor assumes 90 pairs, this run has 25
+task_pass    A 44% · B 60%
+silent_wrong A 56% · B 0%   McNemar b=14 c=0 p=0.0001
+tokens       median A 13900 · B 13300
+addressable  A 0% · B 70%
+branch drop  A 7 run(s), detectable=false · B 5 run(s), detectable=true
+
+## Falsifiers
+
+| id | claim | verdict | detail |
+|---|---|---|---|
+| F-A | task_pass(B) < task_pass(A) − 10pp | not-evaluable (synthetic fixtures) | A 44% · B 60% |
+| F-B | median tokens(B) > 1.5 × median tokens(A) | not-evaluable (synthetic fixtures) | A 13900 · B 13300 |
+| F-C | evidence_replay mismatch in B > 20% | not-evaluable (synthetic fixtures) | 20% of 5 measurable |
+| F-D | gate false positives > 5% | not-evaluable (synthetic fixtures) | measured by `wf-contract corpus`, not by this harness |
+| F-E | >2 of 12 tasks need a shape outside the six | not-evaluable (synthetic fixtures) | 0 B runs had a structured stage failing its declared shape |
+| F-F | located_failure(B) ≤ located_failure(A) on the seeded-fault subset | not-evaluable (synthetic fixtures) | A 0% · B 100% · 10 pairs |
+
+## Notes carried with the numbers
+
+- `run.status` is never a success signal. `silent_wrong` = completed AND ¬task_pass.
+- `null_fed` (A 40% · B 0%) is a MECHANISM CHECK, not evidence: it is
+  a wiring check only: arm B cannot feed a null downstream by construction, because
+  SCHEMA_NONCOMPLIANCE is non-recoverable and the run stops at the edge instead.
+  A metric that cannot go the other way is not evidence.
+- `branch_drop` in arm A is a substring guess (`detectable:false`); in arm B it is decided from
+  `byInput` ids. That asymmetry IS the representability claim, not a measurement bug.
+- `evidence_replay` re-executes in the working tree, not a clean checkout (`cleanCheckout:false`).
+- Where a result is null the wording is **"no detectable difference"**, never "no difference".
+
