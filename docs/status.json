@@ -1,0 +1,41 @@
+{
+  "generatedAt": "2026-08-20T22:09:30.528Z",
+  "commit": "7519ed3",
+  "tests": {
+    "pass": 10,
+    "fail": 0,
+    "exit": 0
+  },
+  "schemas": {
+    "pass": 12,
+    "total": 12,
+    "exit": 0
+  },
+  "eval": {
+    "runs": 50,
+    "pairs": 25,
+    "synthetic": true,
+    "silent_wrong": {
+      "A": 0.56,
+      "B": 0
+    },
+    "falsifiersEvaluated": 0
+  },
+  "chips": {
+    "tests": {
+      "label": "tests",
+      "message": "10 pass",
+      "color": "green"
+    },
+    "schemas": {
+      "label": "shapes",
+      "message": "12/12",
+      "color": "green"
+    },
+    "eval": {
+      "label": "eval",
+      "message": "50 runs (fixtures)",
+      "color": "yellow"
+    }
+  }
+}

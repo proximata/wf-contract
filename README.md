@@ -1,5 +1,15 @@
 # wf-contract
 
+[![ci](https://github.com/proximata/wf-contract/actions/workflows/ci.yml/badge.svg)](https://github.com/proximata/wf-contract/actions/workflows/ci.yml)
+[![tests](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fproximata%2Fwf-contract%2Fmain%2Fdocs%2Fstatus.json&query=%24.chips.tests.message&label=tests)](docs/status.json)
+[![shapes](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fproximata%2Fwf-contract%2Fmain%2Fdocs%2Fstatus.json&query=%24.chips.schemas.message&label=shapes)](docs/status.json)
+[![eval](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fproximata%2Fwf-contract%2Fmain%2Fdocs%2Fstatus.json&query=%24.chips.eval.message&label=eval)](docs/status.json)
+[![last run](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fproximata%2Fwf-contract%2Fmain%2Fdocs%2Fstatus.json&query=%24.generatedAt&label=last%20run)](docs/status.json)
+
+Chips read `docs/status.json`, written by CI from real check output (`scripts/status.mjs`).
+The eval chip says **fixtures** because every recorded run is `synthetic: true` — a harness
+self-test, not evidence about any model.
+
 Deterministic **preflight check** for [pi-dynamic-workflows](https://www.npmjs.com/package/@quintinshaw/pi-dynamic-workflows) scripts.
 It refuses workflow shapes that pass a prior stage's **raw prose** into the next stage's prompt.
 

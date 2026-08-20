@@ -1,0 +1,87 @@
+name: ci
+
+# One workflow file on purpose. Two jobs: `check` always, `leaks` only on PRs.
+# No version matrix: engines.node is ">=22" and nothing has broken on another major yet.
+# Add one only when a real failure names a version.
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # only used by the status commit-back step, push-to-main only
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      # bootstrap installs deps and asserts its own idempotency (second run: no changes).
+      - name: dev environment (bootstrap x2 + shellcheck)
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq shellcheck
+          sh check.sh
+
+      - name: gate + eval harness tests
+        run: npm test
+
+      - name: schema checks
+        run: node schemas/check.mjs
+
+      - name: shapes are regenerable (no diff)
+        run: |
+          npm run shapes
+          git diff --exit-code -- shapes/
+
+      # Recorded fixtures only. `--live` is never used in CI: zero token spend.
+      - name: eval against recorded fixtures
+        run: |
+          node eval/run.mjs
+          node eval/score.mjs
+
+      - name: emit README chip numbers + last-run timestamp
+        run: node scripts/status.mjs
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: reports
+          path: |
+            docs/status.json
+            eval/out/report.json
+            eval/out/report.md
+
+      # The chips read docs/status.json from raw.githubusercontent, so it has to land on main.
+      - name: commit docs/status.json
+        if: github.event_name == 'push'
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/status.json
+          git diff --cached --quiet && { echo "status unchanged"; exit 0; }
+          git commit -m "ci: status.json [skip ci]"
+          git push
+
+  leaks:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # gitleaks scans PR history, not just the tip tree
+
+      # Pinned release tarball rather than gitleaks-action@v2: that action requires a paid
+      # GITLEAKS_LICENSE for organisation-owned repos, and this repo is org-owned.
+      - name: gitleaks
+        env:
+          GITLEAKS_VERSION: 8.24.3
+        run: |
+          curl -sSfL "https://github.com/gitleaks/gitleaks/releases/download/v${GITLEAKS_VERSION}/gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz" | tar -xz gitleaks
+          ./gitleaks git . --no-banner --redact --log-opts="${{ github.event.pull_request.base.sha }}..HEAD"
