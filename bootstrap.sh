@@ -35,6 +35,9 @@ PKG_BAD=$(node -e '
 note "package.json declares acorn, type=module, node>=22"
 
 # --- 3. dependencies. npm ci when a lockfile exists, else npm install. ---
+# `-nt` is a POSIX-optional test extension (SC3013). Present in dash, bash, busybox ash and
+# every /bin/sh we target; the fallback if it is missing is a reinstall, not a wrong answer.
+# shellcheck disable=SC3013
 if [ -d node_modules ] && [ -f node_modules/.wf-contract-stamp ] \
   && [ ! package.json -nt node_modules/.wf-contract-stamp ] \
   && { [ ! -f package-lock.json ] || [ ! package-lock.json -nt node_modules/.wf-contract-stamp ]; }; then
